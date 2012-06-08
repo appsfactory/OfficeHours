@@ -1,0 +1,479 @@
+/*  mainPage.css
+        PROG8105-1 Systems Project: Stylesheet for the index page
+
+    Revision History
+        Charles Borras, Will Carvalho, Huilong Ma and Vandana Sharma,  2012.02.16: Created
+*/
+
+*
+{
+    margin:0px;
+    padding:0px;
+    outline:none;
+}
+
+html
+{
+    background:#E0E0E0;
+    width: 100%;
+    height: 1200px; 
+}
+
+body
+{
+    margin: 10px auto 20px auto;
+    width: 1000px;
+    height: auto;
+    font-family: Arial; 
+    cursor: default;
+}
+
+img
+{
+    border: 0;
+}
+
+a:link {text-decoration: none;}
+a:visited {text-decoration: none;}
+a:active {text-decoration: none;}
+a:hover{text-decoration: none;}
+
+ul
+{
+    list-style-type: none;
+}
+
+ul li
+{
+    float: left;
+    font-size:20px;
+    margin-left: 15px;
+    font-weight: bold;
+    color: white;
+}
+
+li:hover
+{
+    color: red;
+}
+
+input
+{
+    padding: 3px;
+    vertical-align: bottom;
+}
+
+input[type=password]
+{
+    height: 20px;
+    width: 200px;
+}
+
+input[type=text]:hover
+{
+    background-color: #f2f2f2;
+}
+
+input[type=password]:hover
+{
+    background-color: #f2f2f2;
+}
+
+select:hover
+{
+    background-color: #f2f2f2;
+}
+
+input[type=text]:focus
+{
+    background-color: #FFFFCC;
+}
+
+input[type=password]:focus
+{
+    background-color: #FFFFCC;
+}
+
+input[type=submit], input[type=reset], input[type=button], input[type=password]
+{
+    padding: 1px;
+}
+
+#mainDiv
+{
+    width:1000px;
+    height: auto;
+    float:left;
+    background-color: #FFFFFF;
+    border-top:1px grey solid;
+    border-left:1px grey solid;
+    border-right: 1px grey solid;
+    box-shadow: 10px 10px 10px #505050;
+}
+
+#topDiv
+{
+    width:1000px;
+    height:150px;
+    clear: both;
+    float: left;
+}
+
+#mainPageHeaderDiv
+{
+    width: 1000px;
+    height: 90px;
+    float: left;
+    clear: both;
+    padding-top: 20px;
+    font-size: 60px;
+    font-family: Georgia, Arial;    
+    font-weight: bold;
+    color: #000000;
+    text-align: center;   
+}
+
+#sitePanelNameDiv
+{
+    width: 1000px;
+    height: 30px;
+    float: left;
+    vertical-align: top;
+    font-size: 20px;
+    font-weight: bold;
+    color: #000000;
+    text-align: center;   
+}
+
+#menuDiv 
+{
+    width:1000px;
+    height: 30px;
+    padding: 0px;
+    margin: 0px;
+    float:left;
+    background: #D6D6D6 url(../images/bg_menu.gif) repeat-x;
+}
+
+#errorMessage
+{
+    width: 980px;
+    height: auto;
+    float: left;
+    padding: 10px;
+    background-color: #900000;
+    border-top: 1px solid #FFFFFF;
+    border-bottom: 1px solid #FFFFFF;
+    font-size: 14px;
+    color: white; 
+}
+
+#middleDiv
+{
+    width: 1000px;
+    min-height: 800px;
+    height: auto;
+    float: left;
+    margin-top: 0px;
+    padding-top: 20px;
+    background: #D6D6D6 url(../images/background.png) no-repeat;
+}
+
+#middleLeftDiv
+{
+    width: 740px;
+    min-height: 700px;
+    height: auto;
+    float: left;
+}
+
+#middleRightDiv
+{
+    width: 260px;
+    min-height: 700px;
+    height: auto;
+    float: left;
+    margin-top: 0px;
+}
+
+#logInDiv
+{
+    display: none;
+    width:210px;
+    height: 210px;
+    padding: 15px;
+    background-color: #F0F0F0;
+    float:right;
+    margin-right: 50px;
+    font-family:Arial;
+    font-size:11px;
+    font-weight: bold;
+    /*border: 1px #000000 solid;*/
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;    
+    box-shadow: 10px 10px 10px #505050;
+}
+
+#logInActivationDiv
+{
+    width:210px;
+    height: 140px;
+    padding: 15px;
+    background-color: #F0F0F0;
+    float:right;
+    margin-top: 20px;
+    margin-right: 50px;
+    font-family:Arial;
+    font-size:11px;
+    font-weight: bold;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px; 
+    box-shadow: 10px 10px 10px #505050;
+}
+
+#logInHeader
+{
+    width:210px;
+    height: 25px;
+    background-color: #E0E0E0;
+    text-align: center;
+    vertical-align: middle;
+    font-family:Arial;
+    font-size:12px;
+    font-weight: bold;
+}
+
+#createNewDiv
+{
+    display: none;
+    width:210px;
+    height: 370px;
+    padding: 15px;
+    background-color: #F0F0F0;
+    float:right;
+    margin-right: 50px;
+    font-family:Arial;
+    font-size:11px;
+    font-weight: bold;
+    /*border: 1px #000000 solid;*/
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;     
+    box-shadow: 10px 10px 10px #505050;
+}
+
+#loginCreateButtomDiv
+{
+    width:210px;
+    height: 80px;
+    padding: 15px;
+    background-color: #F0F0F0;
+    float:right;
+    margin-right: 50px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-family:Arial;
+    font-size:10px;
+    font-weight: bold;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;      
+    box-shadow: 10px 10px 10px #505050;
+}
+
+#launchFormDiv
+{
+    display: none;
+    width:210px;
+    height: 140px;
+    padding: 15px;
+    background-color: #F0F0F0;
+    float:right;
+    margin-top: 20px;
+    margin-right: 50px;
+    font-family:Arial;
+    font-size:11px;
+    font-weight: bold;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;     
+    box-shadow: 10px 10px 10px #505050;
+}
+
+#bottomDiv
+{
+    width:1000px;
+    height: 30px;
+    background: url(../images/bg_menu.gif) repeat-x;
+    float:left;
+    text-align: center;
+    font-family:Arial;
+    font-size:12px;
+    font-weight: bold;
+    color:#FFFFFF;
+}
+
+#branchesTableDiv
+{
+    width: 900px;
+    height: auto;
+    margin: 10px auto 20px auto;
+    box-shadow: 10px 10px 10px #505050;
+}
+
+#branchesTableHeader
+{
+    border-left:1px white solid;
+    border-top:1px white solid;
+    border-right:1px black solid;
+    border-bottom:1px black solid;
+    font-family:Verdana;
+    color: white;
+    background-color: #B22222;  
+    font-size:11px;
+    font-weight:bold;
+}
+
+#branchesTableRow td
+{
+    font-family:Verdana;
+    font-size:11px;
+    padding: 4px;
+}
+
+.oddRow
+{
+    background:#FFFFFF;
+    font-family:Verdana;
+    font-size:12px;
+    vertical-align:middle;
+    cursor:default;
+}
+
+.evenRow
+{
+    background:#ECF2FD;
+    font-family:Verdana;
+    font-size:12px;
+    vertical-align:middle;
+    cursor:default;
+}
+
+.highlight
+{
+    background:#B9C5F4;
+    font-size:12px;
+    font-weight:bold;
+}
+
+#branchFormDiv
+{
+    width: 470px;
+    height: 200px;
+    border: 1px black solid;
+    background-color:#E6E6FA; 
+    margin: 10px auto 20px auto;
+    box-shadow: 10px 10px 10px #505050;
+}
+
+#locationFormDiv
+{
+    width: 500px;
+    height: 200px;
+    border: 1px black solid;
+    background-color:#E6E6FA; 
+    margin: 10px auto 20px auto;
+    box-shadow: 10px 10px 10px #505050;
+}
+
+.detailsFormHeaderDiv
+{
+    width: 469px;
+    height: 20px;
+    color: white;
+    border-left:1px white solid;
+    border-top:1px white solid;
+    border-right:1px black solid;
+    border-bottom:1px black solid;
+    background-color: #B22222;  
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size:12px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.detailsLocationFormHeaderDiv
+{
+    width: 499px;
+    height: 20px;
+    color: white;
+    border-left:1px white solid;
+    border-top:1px white solid;
+    border-right:1px black solid;
+    border-bottom:1px black solid;
+    background-color: #B22222;  
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size:12px;
+    font-weight: bold;
+    text-align: center;
+}
+
+#detailsTable
+{
+    margin: 10px auto 20px auto;
+    font-family: Arial;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+#detailsTable td
+{
+    vertical-align: middle;
+    padding: 5px;
+}
+
+#branchSelectionDiv
+{
+    width: 878px;
+    height: 25px;
+    margin-left: 50px; 
+    color: black;
+    border-left:1px grey solid;
+    border-top:1px grey solid;
+    border-right:1px black solid;
+    border-bottom:1px black solid;
+    background-color: #FFFFCC;  
+    padding: 10px;
+    font-size: 15px;
+    font-weight: bold;
+    box-shadow: 10px 10px 10px #505050;
+}
+
+.tooltip{
+    position:absolute;
+    padding: 5px 30px;
+    background:#000;
+    color:#fff;
+    border-color: red;
+    border-radius:5px;
+    -moz-box-shadow:0 0 10px #000;
+    -webkit-box-shadow:0 0 10px #000;    
+}
+
+
+#about
+{
+    float: left;
+    margin-left: 50px;
+    margin-top: 660px;
+    width: 880px;
+    height: auto;
+    font-size: 12px;
+    padding: 10px;
+    font-weight: bold;
+    text-align: justify;
+    border: 1px black dashed;
+    -moz-border-radius: 10px;
+    -webkit-border-radius:10px;   
+    position: absolute;
+    z-index: 100; 
+}
