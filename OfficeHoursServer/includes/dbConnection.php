@@ -1,4 +1,5 @@
 <?
+date_default_timezone_set("America/Toronto");
 try
 {
     $db = new PDO("mysql:host=localhost;dbname=scheduling","root","p");

@@ -1,10 +1,4 @@
-<!-- locations.class.php
-        PROG8105-1 Systems Project: DAL locations class
-
-     Revision History
-        Charles Borras, Will Carvalho, Huilong Ma and Vandana Sharma,  2012.03.18: Created
--->
-<?
+<?php
 // This DAL class handles all the system requests for the boardLocations table
 class Locations
 {
@@ -27,7 +21,7 @@ class Locations
     *              organizationId (int)
     */    
     function Insert(){
-        $query = "INSERT INTO boardLocations
+        $query = "INSERT INTO boardlocations
                 (locationCode,locationDetails,locationBranchId,locationOrganizationId)
                 VALUES('$this->locationCode','$this->locationDetails',$this->branchId,$this->organizationId)";	
         include("includes/dbConnection.php");			

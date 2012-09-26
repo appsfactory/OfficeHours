@@ -1,10 +1,4 @@
-<!-- branches.class.php
-        PROG8105-1 Systems Project: DAL branches class
-
-     Revision History
-        Charles Borras, Will Carvalho, Huilong Ma and Vandana Sharma,  2012.03.17: Created
--->
-<?
+<?php
 // This DAL class handles all the system requests for the branches table
 class Branches
 {

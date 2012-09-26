@@ -138,7 +138,7 @@ $parameters = "nextPage=$nextPage&totalRecords=$totalRecords&organizationId=$org
     <div id="boardHeaderDiv">
         <div id="boardLogoDiv"></div>
         <div id="boardTitleDiv">
-            <label>OFFICE HOURS BOARD</label>
+            <label>Office Hours Board</label>
         </div>
     </div>                       
     <div id="errorMessage">
@@ -168,21 +168,25 @@ $parameters = "nextPage=$nextPage&totalRecords=$totalRecords&organizationId=$org
                 <td id="boardStatusIcon"></td>
                 <td id="boardFirstName">Name</td>
                 <td id="boardOfficeHour">Office Hours</td>
-                <td id="boardBranch">Branch</td>
-                <td id="boardLocation">Location</td>
+                <!--<td id="boardBranch">Branch</td>
+                	<td id="boardLocation">Location</td>-->
             </thead>
             <tbody id="boardGrid">
                 <?
                 // Shows the users and respective schedule information
+                $lastEntry = "";
                 for ($i=0;$i<10;$i++):
                     if($i<$numberLines):
                         $timeNow = date('H:i:s');
                         $status = "red";
-                        if($timeNow < $result[$i]["startingTime"]) $status = "red";
-                        if($timeNow > $result[$i]["finishingTime"] && ($result[$i]["signedIn"] == "00:00:00" && $result[$i]["signedOut"] == "00:00:00")) $status = "red";
-                        if(($timeNow >= $result[$i]["startingTime"] && $timeNow < $result[$i]["finishingTime"]) && $result[$i]["signedIn"] == "00:00:00") $status = "yellow";
-                        if($timeNow > $result[$i]["finishingTime"] && $result[$i]["signedIn"] != "00:00:00" && $result[$i]["signedOut"] == "00:00:00") $status = "yellow";
-                        if($timeNow <= $result[$i]["finishingTime"] && $result[$i]["signedIn"] != "00:00:00") $status = "green";
+                        if(strtotime($result[$i]["signedIn"]) > strtotime($result[$i]["signedOut"])) $status = "green";
+                        elseif($timeNow < $result[$i]["startingTime"] && $result[$i]["firstName"] != $lastEntry) $status = "red";
+                        //if($timeNow > $result[$i]["finishingTime"] && ($result[$i]["signedIn"] == "00:00:00" && $result[$i]["signedOut"] == "00:00:00")) $status = "red";
+                        elseif($timeNow > $result[$i]["finishingTime"] ) $status = "red";
+                        elseif($timenow <= $result[$i]["finishingTime"]) $status = "yellow";
+                        //if(($timeNow >= $result[$i]["startingTime"] && $timeNow < $result[$i]["finishingTime"]) && $result[$i]["signedIn"] == "00:00:00") $status = "yellow";
+                        //if($timeNow > $result[$i]["finishingTime"] && $result[$i]["signedIn"] != "00:00:00" && $result[$i]["signedOut"] == "00:00:00") $status = "yellow";
+                       
                         echo "<tr id='boardGridRow'>";
                         switch($status):
                             case 'red':
@@ -197,15 +201,22 @@ $parameters = "nextPage=$nextPage&totalRecords=$totalRecords&organizationId=$org
                             default:
                                 $image = "images/redLight.png";
                         endswitch;
+                        if ($lastEntry != $result[$i]["firstName"]) {
                         echo "<td align='center'> <img src='".$image."'/> </td>";
-                        echo "<td align='left'>"."  ".$result[$i]["firstName"]." ".$result[$i]["lastName"]."</td>";
+                        echo "<td align='center'>"."  ".$result[$i]["firstName"]." ".$result[$i]["lastName"]."</td>";
+                        } else {
+                        	echo "<td align='center'></td>";
+                        	echo "<td align='center'></td>";
+                        	                        	 
+                        }
                         echo "<td align='center'>".substr($result[$i]["startingTime"],0,5)." - ".substr($result[$i]["finishingTime"],0,5)."</td>";
-                        echo "<td align='center'>".$result[$i]["branchName"]."</td>";
-                        echo "<td align='center'>".$result[$i]["locationCode"]."</td>";
+                        //echo "<td align='center'>".$result[$i]["branchName"]."</td>";
+                        //echo "<td align='center'>".$result[$i]["locationCode"]."</td>";
                         echo "</tr>";
                     else:
                         echo "<tr id='boardGridRow'><td colspan='7'></td></tr>";    
                     endif;
+                    $lastEntry = $result[$i]["firstName"];
                 endfor;
                 ?>
              </tbody>
@@ -214,7 +225,7 @@ $parameters = "nextPage=$nextPage&totalRecords=$totalRecords&organizationId=$org
     <div id="boardFooterDiv">
         <div id="legendDiv">
             <label><img src="images/greenLight.png"/> In Office.</label><br/>
-            <label><img src="images/yellowLight.png"/> Not Signed In/Out.</label><br/>
+            <label><img src="images/yellowLight.png"/> Away.</label><br/>
             <label><img src="images/redLight.png"/> Not Currently Scheduled.</label>
         </div>
         <div id="clockDiv">
