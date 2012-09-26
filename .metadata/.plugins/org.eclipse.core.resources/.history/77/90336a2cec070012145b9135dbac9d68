@@ -1,0 +1,46 @@
+package ca.communitech.appsfactory.waldo;
+
+import android.os.Bundle;
+import android.app.Activity;
+import android.content.Context;
+import android.view.Menu;
+import android.view.View;
+import android.widget.Toast;
+import android.widget.ToggleButton;
+import ca.communitech.appsfactory.waldo.R;
+
+public class Sign_In extends Activity {
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_sign__in);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.activity_sign__in, menu);
+        return true;
+    }
+    
+    /** Called when user presses the sign in/out button */
+    public void toggleSignIn (View view) {
+    	ToggleButton togglebutton = (ToggleButton) findViewById(R.id.toggleButton1);
+    	if (togglebutton.isChecked()){
+    		
+    	}
+    	else {
+    		
+    	}
+    }
+    
+    /** Called when user presses the My Schedule button */
+    public void viewSchedule(View view){
+    	Context context = getApplicationContext();
+    	CharSequence text = "This button don't work yet boss";
+    	int duration = Toast.LENGTH_SHORT;
+
+    	Toast toast = Toast.makeText(context, text, duration);
+    	toast.show();
+    }
+}

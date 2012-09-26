@@ -1,0 +1,11 @@
+package com.example.officehoursclient;
+
+/** Contains Constants Pertaining to the App's Configuration*/
+public class Constants{
+	public static final String ORGANIZATION_NAME = "test";
+	public static final String ORGANIZATION_ID = "test";
+	public static final String LOCATION_CODE = "test";
+	public static final String BRANCH_ID = "test";
+	
+
+}

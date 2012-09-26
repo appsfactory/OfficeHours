@@ -1,0 +1,20 @@
+package com.example.officehoursclient;
+
+import android.os.Bundle;
+import android.app.Activity;
+import android.view.Menu;
+
+public class Log_In extends Activity {
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_log__in);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.activity_log__in, menu);
+        return true;
+    }
+}

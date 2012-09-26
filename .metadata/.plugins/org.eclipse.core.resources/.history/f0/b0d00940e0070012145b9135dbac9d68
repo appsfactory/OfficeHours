@@ -1,0 +1,20 @@
+package ca.communitech.appsfactory.waldo;
+
+import android.os.Bundle;
+import android.app.Activity;
+import android.view.Menu;
+
+public class SignInChecker extends Activity {
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_sign_in_checker);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.activity_sign_in_checker, menu);
+        return true;
+    }
+}
