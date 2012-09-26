@@ -1,10 +1,4 @@
-<!-- userSchedules.class.php
-        PROG8105-1 Systems Project: DAL UserSchedules class
-
-     Revision History
-        Charles Borras, Will Carvalho, Huilong Ma and Vandana Sharma,  2012.03.23: Created
--->
-<?
+<?php
 // This DAL class handles all the system requests for the userschedules table
 class UserSchedules
 {

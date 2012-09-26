@@ -1,10 +1,4 @@
-<!-- users.class.php
-        PROG8105-1 Systems Project: DAL users class
-
-     Revision History
-        Charles Borras, Will Carvalho, Huilong Ma and Vandana Sharma,  2012.03.22: Created
--->
-<?
+<?php
 // This DAL class handles all the system requests for the users table
 class Users
 {
