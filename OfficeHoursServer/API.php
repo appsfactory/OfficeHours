@@ -20,35 +20,33 @@ header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Headers: Content-Type');
 header('Access-Control-Allow-Methods: POST, GET, OPTIONS');
 //echo json_encode(count($_POST));
-
+$json = json_decode(file_get_contents("php://input"));
+//echo $json -> organizationName;
 //echo json_encode('blah');
 /*$peniscock = array('hello' => 'yes', 'cocknballs' => false);
 echo json_encode($peniscock);
 //session_start('officeHours');*/
 $errorMessages = array();
-
 function checkBlank($keyname) {
-	$temp = mysql_entities_fix_string((isset($_POST[$keyname]))?trim($_POST[$keyname]):'');
-	if ($temp == "") {
+	if ($keyname == "") {
 		array_push($errorMessages, $keyname . " is Blank");
 		return "";
 	}
-	return $temp;
+	return $keyname;
 }
-	$organizationName = checkBlank('organizationName');
-	$branchId = checkBlank('branchId');
-	$locationCode = checkBlank('locationCode');
-	$accessCode = checkBlank('accessCode');
-	$userName = checkBlank('userName');
-	$password = checkBlank('password');
-	$action = checkBlank('action');
-	$organizationId = checkBlank('organizationId');
-
-//echo json_encode($_POST['organizationName']);
+	$organizationName = checkBlank($json -> organizationName);
+	$branchId = checkBlank($json -> branchId);
+	$locationCode = checkBlank($json -> locationCode);
+	$accessCode = checkBlank($json -> accessCode);
+	$userName = checkBlank($json -> userName);
+	$password = checkBlank($json -> password);
+	$action = checkBlank($json -> action);
+	$organizationId = checkBlank($json -> organizationId);
 
 if ($action == "logIn"){
 	$organization = new Organizations('',$organizationName,'','','','','','','','','','','');
 	$resultOrganization = $organization->selectOrganization();
+	//echo "boop";
 	//$resultAdministrator = "false";
 	if(count($resultOrganization)==0){
 		array_push($errorMessages,"Organization not found.");
@@ -89,7 +87,6 @@ if ($action == 'signIn') {
 	$time = date('H:i:s',time());
 	$date = date('Y-m-d');
 	$actualTime = date("H:i:s");
-	echo json_encode($organizationId);
 	
 	$query = "UPDATE userschedules
 	SET signedIn = '$actualTime'
@@ -100,6 +97,8 @@ if ($action == 'signIn') {
 	AND userName = '$userName'";
 	$executeQuery = $db->prepare($query);
 	$executeQuery->execute() or exit("Error: UPDATE query failed.");
+	//header('HTTP', true, 200);
+	echo json_encode("signin success");
 }
 	
 	// Register Sign Out
@@ -119,12 +118,14 @@ if($action == 'signOut'){
 	
 	$executeQuery = $db->prepare($query);
 	$executeQuery->execute() or exit("Error: UPDATE query failed.");
+	//header('HTTP', true, 200);
 	echo json_encode("signout success");
 }
 
-if($action != 'signIn' || $action != 'signOut' || $action != 'logIn'){
-	header('HTTP', true, 404);
-}
+//if($action != "signIn" && $action != "signOut" && $action != "logIn"){
+	//header('HTTP', true, 404);
+	//echo $action;
+//}
 //MAKE THIS WORK
 /*
 if(count($errorMessages) > 0 ):

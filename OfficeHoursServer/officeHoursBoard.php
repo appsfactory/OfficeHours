@@ -180,10 +180,10 @@ $parameters = "nextPage=$nextPage&totalRecords=$totalRecords&organizationId=$org
                         $timeNow = date('H:i:s');
                         $status = "red";
                         if(strtotime($result[$i]["signedIn"]) > strtotime($result[$i]["signedOut"])) $status = "green";
+                        elseif($timenow <= $result[$i]["finishingTime"]) $status = "yellow";
                         elseif($timeNow < $result[$i]["startingTime"] && $result[$i]["firstName"] != $lastEntry) $status = "red";
                         //if($timeNow > $result[$i]["finishingTime"] && ($result[$i]["signedIn"] == "00:00:00" && $result[$i]["signedOut"] == "00:00:00")) $status = "red";
-                        elseif($timeNow > $result[$i]["finishingTime"] ) $status = "red";
-                        elseif($timenow <= $result[$i]["finishingTime"]) $status = "yellow";
+                        elseif($timeNow > $result[$i]["finishingTime"] && $result[$i]["firstName"] != $lastEntry) $status = "red";
                         //if(($timeNow >= $result[$i]["startingTime"] && $timeNow < $result[$i]["finishingTime"]) && $result[$i]["signedIn"] == "00:00:00") $status = "yellow";
                         //if($timeNow > $result[$i]["finishingTime"] && $result[$i]["signedIn"] != "00:00:00" && $result[$i]["signedOut"] == "00:00:00") $status = "yellow";
                        
