@@ -1,0 +1,31 @@
+package ca.communitech.appsfactory.waldo;
+
+import android.os.Bundle;
+import android.app.Activity;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.View;
+import android.view.ViewGroup;
+
+public class ScheduleView extends Activity {
+	final float scale = getBaseContext().getResources().getDisplayMetrics().density;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_schedule_view);
+
+        ViewGroup moncol = (ViewGroup) findViewById(R.id.moncolumn);        
+        
+        //CREATE THE TIMEBOX OF TIIIIIIIIIIIIIIIIIIIIIIMMEEE!!!!!
+        View view;
+        view = LayoutInflater.from(getBaseContext()).inflate(R.layout.timeboxborder, moncol);
+        int viewheightinpixels = (int) (36)        
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.activity_schedule_view, menu);
+        return true;
+    }
+}

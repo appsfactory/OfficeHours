@@ -10,5 +10,6 @@
     <string name="login_subtitle"> \@ the hub</string>
     <string name="login_footer">By the Apps Factory Wizards</string>
     <string name="title_activity_sign_in_checker">SignInChecker</string>
+    <string name="title_activity_schedule_view">ScheduleView</string>
 
 </resources>

@@ -34,7 +34,7 @@
         android:layout_alignParentRight="true"
         android:layout_alignTop="@+id/button1"
         android:layout_toRightOf="@+id/textView1"
-        android:onClick="getTheFuckOut"
+        android:onClick="logOut"
         android:text="Sign Out" />
 
     <Button

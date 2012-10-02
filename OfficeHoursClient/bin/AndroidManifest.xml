@@ -40,6 +40,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ScheduleView"
+            android:label="@string/title_activity_schedule_view" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ca.communitech.appsfactory.waldo.SignInChecker" />
+        </activity>
     </application>
 
 </manifest>

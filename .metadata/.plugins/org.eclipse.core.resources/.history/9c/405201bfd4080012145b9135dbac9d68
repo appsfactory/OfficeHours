@@ -1,0 +1,32 @@
+package ca.communitech.appsfactory.waldo;
+
+import android.os.Bundle;
+import android.app.Activity;
+import android.view.Menu;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
+import android.widget.LinearLayout;
+
+public class ScheduleView extends Activity {
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_schedule_view);
+        final float scale = getBaseContext().getResources().getDisplayMetrics().density;
+        int pixels = (int) (36 * scale + 0.5f);
+        
+        View v1 = new View(getApplicationContext());
+        v1.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT, pixels));
+        v1.setBackgroundColor(195d94);
+        LinearLayout moncol = (LinearLayout) findViewById(R.id.moncolumn);
+        moncol.addView(v1);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.activity_schedule_view, menu);
+        return true;
+    }
+}

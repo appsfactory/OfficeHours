@@ -43,12 +43,23 @@ public class Sign_In extends Activity {
     public void toggleSignIn (View view) {
     	ToggleButton togglebutton = (ToggleButton) findViewById(R.id.toggleButton1);
     	if (togglebutton.isChecked()){
-    		String action = "signIn";
-    		postSignInorOut(action);
+    		new Thread(new Runnable() {
+    	        public void run() {
+    	            String action = "signIn";
+    	    		postSignInorOut(action);
+    	    		return;
+    	        }
+    	    }).start(); 
+
     	}
     	else {
-    		String action="signOut";
-    		postSignInorOut(action);
+    		new Thread(new Runnable() {
+    	        public void run() {
+    	            String action = "signOut";
+    	    		postSignInorOut(action);
+    	    		return;
+    	        }
+    	    }).start(); 
     	}
     }
 
@@ -85,17 +96,19 @@ public class Sign_In extends Activity {
     
     /** Called when user presses the My Schedule button */
     public void viewSchedule(View view){
-    	Context context = getApplicationContext();
-    	CharSequence text = "This button don't work yet boss";
-    	int duration = Toast.LENGTH_SHORT;
-
-    	Toast toast = Toast.makeText(context, text, duration);
-    	toast.show();
+    	Intent my_schedule_intent = new Intent(this, ScheduleView.class);
+		startActivity(my_schedule_intent);
     }
     
-    public void getTheFuckOut(View view) {
-    	String action="signOut";
-		postSignInorOut(action);
+    public void logOut(View view) {
+    	new Thread(new Runnable() {
+	        public void run() {
+	        	String action="signOut";
+	    		postSignInorOut(action);
+	    		return;
+	        }
+	    }).start(); 
+
 		SharedPreferences auth_stuff = getSharedPreferences(Constants.SHARED_PREFS_FILE, MODE_PRIVATE);
 		SharedPreferences.Editor editor = auth_stuff.edit();
 		editor.putString("authstring", (" " + Constants.AUTH_SPLITTER + " "));

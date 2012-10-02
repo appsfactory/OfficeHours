@@ -15,27 +15,52 @@ public final class R {
         public static final int ic_launcher=0x7f020001;
     }
     public static final class id {
+        public static final int addbutton=0x7f07001a;
         public static final int button1=0x7f070006;
-        public static final int button2=0x7f070009;
+        public static final int button2=0x7f07001d;
+        public static final int footer=0x7f070019;
+        public static final int fri_header=0x7f07000c;
+        public static final int fricolumn=0x7f070018;
         public static final int linearLayout1=0x7f070002;
+        public static final int linearLayout2=0x7f07000f;
+        public static final int linearLayout3=0x7f070013;
         public static final int login_footer_text=0x7f070005;
         public static final int login_pw=0x7f070004;
         public static final int login_subtitle=0x7f070001;
         public static final int login_title=0x7f070000;
         public static final int login_username=0x7f070003;
-        public static final int menu_settings=0x7f07000a;
-        public static final int textView1=0x7f070008;
-        public static final int toggleButton1=0x7f070007;
+        public static final int menu_settings=0x7f07001e;
+        public static final int mon_header=0x7f070008;
+        public static final int moncolumn=0x7f070014;
+        public static final int relativeLayout1=0x7f070007;
+        public static final int relativeLayout242=0x7f07000e;
+        public static final int relativeLayout3=0x7f070012;
+        public static final int scrollView1=0x7f07000d;
+        public static final int sidebar=0x7f070010;
+        public static final int textView1=0x7f07001c;
+        public static final int textView10=0x7f070011;
+        public static final int thu_header=0x7f07000b;
+        public static final int thucolumn=0x7f070017;
+        public static final int toggleButton1=0x7f07001b;
+        public static final int tue_header=0x7f070009;
+        public static final int tuecolumn=0x7f070015;
+        public static final int wed_header=0x7f07000a;
+        public static final int wedcolumn=0x7f070016;
     }
     public static final class layout {
         public static final int activity_log__in=0x7f030000;
-        public static final int activity_sign__in=0x7f030001;
-        public static final int activity_sign_in_checker=0x7f030002;
+        public static final int activity_schedule_view=0x7f030001;
+        public static final int activity_sign__in=0x7f030002;
+        public static final int activity_sign_in_checker=0x7f030003;
+        public static final int timeboxborder=0x7f030004;
+        public static final int timeboxtextbottom=0x7f030005;
+        public static final int timeboxtexttop=0x7f030006;
     }
     public static final class menu {
         public static final int activity_log__in=0x7f060000;
-        public static final int activity_sign__in=0x7f060001;
-        public static final int activity_sign_in_checker=0x7f060002;
+        public static final int activity_schedule_view=0x7f060001;
+        public static final int activity_sign__in=0x7f060002;
+        public static final int activity_sign_in_checker=0x7f060003;
     }
     public static final class string {
         public static final int app_name=0x7f040000;
@@ -46,6 +71,7 @@ public final class R {
         public static final int menu_settings=0x7f040002;
         public static final int schedule_button=0x7f040004;
         public static final int title_activity_log__in=0x7f040005;
+        public static final int title_activity_schedule_view=0x7f04000a;
         public static final int title_activity_sign__in=0x7f040003;
         public static final int title_activity_sign_in_checker=0x7f040009;
     }

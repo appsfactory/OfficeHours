@@ -38,8 +38,8 @@
             android:id="@+id/login_username"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dip"
-            android:layout_marginTop="5dip"
+            android:layout_marginBottom="20sp"
+            android:layout_marginTop="5sp"
             android:hint="Username"
             android:singleLine="true" />
 
