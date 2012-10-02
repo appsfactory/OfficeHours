@@ -116,19 +116,15 @@ public class ScheduleView extends Activity {
 					header.setBackgroundColor(Color.GRAY);
 				} else if(jsonobject.get("weekday").toString().equals("Tuesday")) {
 					TextView header = (TextView) findViewById(R.id.tue_header);
-					header.setTextColor(Color.WHITE);
 					header.setBackgroundColor(Color.GRAY);
 				} else if(jsonobject.get("weekday").toString() == "Wednesday") {
 					TextView header = (TextView) findViewById(R.id.wed_header);
-					header.setTextColor(Color.WHITE);
 					header.setBackgroundColor(Color.GRAY);
 				} else if(jsonobject.get("weekday").toString() == "Thursday") {
 					TextView header = (TextView) findViewById(R.id.thu_header);
-					header.setTextColor(Color.WHITE);
 					header.setBackgroundColor(Color.GRAY);
 				} else if(jsonobject.get("weekday").toString() == "Friday") {
 					TextView header = (TextView) findViewById(R.id.fri_header);
-					header.setTextColor(Color.WHITE);
 					header.setBackgroundColor(Color.GRAY);
 				} else {
 					

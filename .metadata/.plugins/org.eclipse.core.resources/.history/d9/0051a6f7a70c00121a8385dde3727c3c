@@ -29,7 +29,7 @@
                 android:layout_weight="2"
                 android:gravity="center"
                 android:text="M" 
-                android:background="#000000"/>
+                android:background="#ffffff"/>
 
             <TextView
                 android:id="@+id/tue_header"
@@ -37,8 +37,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:gravity="center"
-                android:text="T"
-                android:background="#000000" />
+                android:text="T" />
 
             <TextView
                 android:id="@+id/wed_header"
@@ -46,8 +45,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:gravity="center"
-                android:text="W"
-                android:background="#000000" />
+                android:text="W" />
 
             <TextView
                 android:id="@+id/thu_header"
@@ -55,8 +53,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:gravity="center"
-                android:text="T"
-                android:background="#000000" />
+                android:text="T" />
 
             <TextView
                 android:id="@+id/fri_header"
@@ -64,8 +61,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:gravity="center"
-                android:text="F"
-                android:background="#000000" />
+                android:text="F" />
         </LinearLayout>
     </RelativeLayout>
 

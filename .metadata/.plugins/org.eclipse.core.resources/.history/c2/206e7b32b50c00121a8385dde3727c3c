@@ -112,23 +112,18 @@ public class ScheduleView extends Activity {
 				JSONObject jsonobject = new JSONObject(tokener);					
 				if(jsonobject.get("weekday").toString() == "Monday") {
 					TextView header = (TextView) findViewById(R.id.mon_header);
-					header.setTextColor(Color.WHITE);
 					header.setBackgroundColor(Color.GRAY);
 				} else if(jsonobject.get("weekday").toString().equals("Tuesday")) {
 					TextView header = (TextView) findViewById(R.id.tue_header);
-					header.setTextColor(Color.WHITE);
 					header.setBackgroundColor(Color.GRAY);
 				} else if(jsonobject.get("weekday").toString() == "Wednesday") {
 					TextView header = (TextView) findViewById(R.id.wed_header);
-					header.setTextColor(Color.WHITE);
 					header.setBackgroundColor(Color.GRAY);
 				} else if(jsonobject.get("weekday").toString() == "Thursday") {
 					TextView header = (TextView) findViewById(R.id.thu_header);
-					header.setTextColor(Color.WHITE);
 					header.setBackgroundColor(Color.GRAY);
 				} else if(jsonobject.get("weekday").toString() == "Friday") {
 					TextView header = (TextView) findViewById(R.id.fri_header);
-					header.setTextColor(Color.WHITE);
 					header.setBackgroundColor(Color.GRAY);
 				} else {
 					
@@ -152,7 +147,7 @@ public class ScheduleView extends Activity {
 
 		@Override
 		protected HttpResponse doInBackground(Void... params) {
-			
+			// TODO Auto-generated method stub
 			return null;
 		}
 		

@@ -1,3 +1,4 @@
 1349112975647	Extract method 'createEventBox'
 1349113595573	Extract method 'databaseConnectionErrorMessage'
 1349113715953	Extract method 'getDate'
+1349192714452	Delete element

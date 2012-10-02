@@ -128,7 +128,6 @@ public class ScheduleView extends Activity {
 					header.setBackgroundColor(Color.GRAY);
 				} else if(jsonobject.get("weekday").toString() == "Friday") {
 					TextView header = (TextView) findViewById(R.id.fri_header);
-					header.setTextColor(Color.WHITE);
 					header.setBackgroundColor(Color.GRAY);
 				} else {
 					
