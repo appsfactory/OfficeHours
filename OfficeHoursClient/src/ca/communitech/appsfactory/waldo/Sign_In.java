@@ -79,10 +79,7 @@ public class Sign_In extends Activity {
 			post.setHeader("dataType", "json");
 			
 			HttpResponse response = client.execute(post);
-			
-			ByteArrayOutputStream outstream = new ByteArrayOutputStream();
-			response.getEntity().writeTo(outstream);
-			Log.i("LOGGED: ", outstream.toString());
+
 		} catch(JSONException e) {
 			//TODO: handle error
 		} catch(UnsupportedEncodingException e) {
@@ -97,6 +94,7 @@ public class Sign_In extends Activity {
     /** Called when user presses the My Schedule button */
     public void viewSchedule(View view){
     	Intent my_schedule_intent = new Intent(this, ScheduleView.class);
+    	my_schedule_intent.putExtra(Log_In.USERNAME, getIntent().getExtras().getString(Log_In.USERNAME));
 		startActivity(my_schedule_intent);
     }
     

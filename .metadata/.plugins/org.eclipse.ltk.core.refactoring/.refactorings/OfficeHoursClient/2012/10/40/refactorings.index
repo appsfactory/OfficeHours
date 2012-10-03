@@ -2,3 +2,9 @@
 1349113595573	Extract method 'databaseConnectionErrorMessage'
 1349113715953	Extract method 'getDate'
 1349192714452	Delete element
+1349205164006	Extract method 'addScheduleEvent'
+1349210652712	Extract method 'cleanTimeString'
+1349276045628	Delete element
+1349276877628	Delete element
+1349277180297	Delete element
+1349277546658	Delete element

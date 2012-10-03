@@ -65,7 +65,7 @@
                 android:layout_weight="2"
                 android:gravity="center"
                 android:text="F"
-                android:background="#000000" />
+                 />
         </LinearLayout>
     </RelativeLayout>
 
@@ -305,17 +305,12 @@
             android:layout_weight="1"
             android:text="Add" />
         <Button 
-            android:id="@+id/addbutton"
-            android:layout_width="0dp"
-            android:layout_height="fill_parent"
-            android:layout_weight="2"
-            android:text="Refresh" />
-        <Button 
-            android:id="@+id/addbutton"
+            android:id="@+id/refreshbutton"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:text="Delete" />
+            android:onClick="refreshSchedule"
+            android:text="Refresh" />
         
     </LinearLayout>
 
