@@ -40,7 +40,7 @@ $dateSearch = date('Y-m-d');
 $nextPage = isset($_GET['nextPage'])?$_GET['nextPage']:0;
 $totalRecords = isset($_GET['totalRecords'])?$_GET['totalRecords']:0;
 $linesPerPage = 10;
-$secondsToRefresh = 10;
+$secondsToRefresh = 1;
 
 if($nextPage == 0):
     $query = "SELECT COUNT(*)
@@ -89,6 +89,45 @@ if($totalRecords > 0):
 else:
     $numberLines = 0;
 endif;
+
+//UPDATE RECURRING RECORDS//--------------------------------------------------
+//Get an array of each unique username and loop through
+$userQuery = "SELECT DISTINCT userName FROM userschedules";
+$executeQuery = $db -> prepare($userQuery);
+$executeQuery->execute() or exit ("Error: SELECT Needed Updates Query Failed.");
+$userResult = $executeQuery->fetchAll(PDO::FETCH_COLUMN, 0);
+$numberUserLines = count($userResult);
+for ($i = 0; $i < $numberUserLines; $i++){
+	//find entries which are over a week old and still set to 'recurring'
+	$selectQuery = "SELECT * FROM userschedules
+					WHERE CURDATE() - date > 6 AND status = 'y' AND userName = '$userResult[$i]';";
+	$executeQuery = $db -> prepare($selectQuery);
+	$executeQuery->execute() or exit ("Error: SELECT Needed Updates Query Failed.");
+	$selectResult = $executeQuery->fetchAll(PDO::FETCH_BOTH);
+	$numberSelectLines = count($selectResult);
+	//Update the recurring status of all the old entries to not recur
+	$updateQuery = "UPDATE userschedules SET status = ' ' WHERE CURDATE() - date > 6 AND status = 'y' AND userName = '$userResult[$i]';";
+	$executeQuery = $db->prepare($updateQuery);
+	$executeQuery ->execute() or exit("Error: UPDATE old recurring query failed.");
+	for ($i = 0; $i < $numberSelectLines; $i++){
+		//Check if there are more up-to-date recurring entries sent from phone 
+		$query = "SELECT userName FROM userschedules WHERE date = DATE_ADD(".$selectResult[$i]['date'].", INTERVAL 7 DAY) and status = 'y' AND userName = '$userResult[$i]';";
+		$executeQuery = $db -> prepare($query);
+		$executeQuery->execute() or exit ("Error: SELECT Skippable Updates Query Failed.");
+		$checkResult = $executeQuery->fetchAll(PDO::FETCH_BOTH);
+		//If not, create a new entry for the recurring schedule
+		if (count($checkResult) == 0){
+			$query = "INSERT INTO userschedules (userName, organizationId, branchId, locationCode, date, startingTime, signedIn, finishingTime, signedOut, status) VALUES
+					('".$selectResult[$i]['userName']."', $organizationId, $branchId,'$locationCode', DATE_ADD('".$selectResult[$i]['date']."', INTERVAL 7 DAY),'". $selectResult[$i]['startingTime']."', 
+					'00:00','".$selectResult[$i]['finishingTime']."','00:00', 'y');";
+			$executeQuery = $db -> prepare($query);
+			$executeQuery->execute() or exit ("Error: INSERT Updated Recurring Query Failed.");
+		}
+	}
+}
+/////---------------------------------------------------------------------------
+
+
 
 if($nextPage == $numberOfPages) $nextPage = 0;
 $parameters = "nextPage=$nextPage&totalRecords=$totalRecords&organizationId=$organizationId&branchId=$branchId&locationCode=$locationCode";
