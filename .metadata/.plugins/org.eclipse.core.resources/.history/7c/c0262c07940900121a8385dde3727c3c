@@ -1,0 +1,39 @@
+package ca.communitech.appsfactory.waldo;
+
+import java.util.zip.Inflater;
+
+import android.os.Bundle;
+import android.app.Activity;
+import android.content.Context;
+import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+public class ScheduleView extends Activity {
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_schedule_view);
+        ViewGroup moncol = (ViewGroup) findViewById(R.id.moncolumn);        
+        
+        //CREATE THE TIMEBOX OF TIIIIIIIIIIIIIIIIIIIIIIMMEEE!!!!!
+         RelativeLayout layout = (RelativeLayout) RelativeLayout.inflate(getBaseContext(), R.layout.timeboxborder, moncol);
+         //TextView toptime = (TextView) TextView.inflate(getBaseContext(), R.layout.timeboxtexttop, false);
+         View toptime = getLayoutInflater().inflate(R.layout.timeboxtexttop, layout);
+         TextView toptimetextview = (TextView) layout.getChildAt(layout.getChildCount()-1);
+         toptimetextview.setText("bacon");
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.activity_schedule_view, menu);
+        return true;
+    }
+}

@@ -1,0 +1,10 @@
+package ca.communitech.appsfactory.waldo;
+
+public class Constants {
+	public static final String POST_URL = "10.172.16.65:4567/officehoursserver/API.php";
+	public static final String ACCESS_CODE = "test";
+	public static final String ORGANIZATION_NAME = "test";
+	public static final String ORGANIZATION_ID = "test";
+	public static final String BRANCH_ID = "test";
+	public static final String LOCATION = "test";
+}

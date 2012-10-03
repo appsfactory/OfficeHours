@@ -1,0 +1,41 @@
+package ca.communitech.appsfactory.waldo;
+
+import android.os.Bundle;
+import android.app.Activity;
+import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+public class ScheduleView extends Activity {
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_schedule_view);
+        ViewGroup moncol = (ViewGroup) findViewById(R.id.moncolumn);        
+        
+        //CREATE THE TIMEBOX OF TIIIIIIIIIIIIIIIIIIIIIIMMEEE!!!!!
+         RelativeLayout layout = (RelativeLayout) RelativeLayout.inflate(getBaseContext(), R.layout.timeboxborder, moncol);
+         TextView toptime = (TextView) TextView.inflate(getBaseContext(), R.layout.timeboxtexttop, null);
+         toptime.setGravity(Gravity.CENTER_HORIZONTAL);
+         layout.addView(toptime);
+//        View view;
+//        view = LayoutInflater.from(getBaseContext()).inflate(R.layout.timeboxborder, moncol);
+//        int viewheightinpixels = (int) (90*scale +0.5f);
+//        //view.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT, viewheightinpixels));
+//        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.FILL_PARENT, 1200);
+//        view.setLayoutParams(params);
+//        //view.invalidate();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.activity_schedule_view, menu);
+        return true;
+    }
+}
