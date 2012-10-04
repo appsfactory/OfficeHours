@@ -47,6 +47,13 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="ca.communitech.appsfactory.waldo.SignInChecker" />
         </activity>
+        <activity
+            android:name=".CreateScheduleView"
+            android:label="@string/title_activity_create_schedule_view" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ca.communitech.appsfactory.waldo.ScheduleView" />
+        </activity>
     </application>
 
 </manifest>

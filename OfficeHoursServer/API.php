@@ -209,7 +209,7 @@ if ($action == "updateSchedule"){
 	AND organizationId = $organizationId
 	AND branchId = $branchId
 	AND locationCode = '$locationCode'
-	AND date = '".date("Y-m-d", strtotime($fromDate))."'
+	AND date = '".date("Y-m-d", strtotime($selectedDate))."'
 	AND (startingTime = '$startingTime'
 	OR finishingTime = '$finishingTime')";
 	$executeQuery = $db->prepare($checkQuery);
@@ -218,7 +218,7 @@ if ($action == "updateSchedule"){
 	if(count($scheduleResult) <= 0 ){
 		$query = "INSERT INTO userschedules (userName, organizationId, branchId, locationCode, date, startingTime, signedIn, finishingTime, signedOut, status) VALUES ";	
 		//$values .= ($comma)?',':'';
-		$values .= "('$userName',$organizationId,$branchId,'$locationCode','".date("Y-m-d", strtotime($fromDate))."','$startingTime','00:00','$finishingTime','00:00','y')";
+		$values .= "('$userName',$organizationId,$branchId,'$locationCode','".date("Y-m-d", strtotime($selectedDate))."','$startingTime','00:00','$finishingTime','00:00','y')";
 		//$comma = true;
 	} else {
 		echo $finishingTime;
@@ -229,7 +229,7 @@ if ($action == "updateSchedule"){
 				AND organizationId = $organizationId
 				AND branchId = $branchId
 				AND locationCode = '$locationCode'
-				AND date = '".date("Y-m-d", strtotime($fromDate))."'
+				AND date = '".date("Y-m-d", strtotime($selectedDate))."'
 				AND (startingTime = '$startingTime'
 				OR finishingTime = '$finishingTime')";
 		//(userName, organizationId, branchId, locationCode, date, startingTime, signedIn, finishingTime, signedOut, status) VALUES ;	

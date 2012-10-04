@@ -11,5 +11,9 @@
     <string name="login_footer">By the Apps Factory Wizards</string>
     <string name="title_activity_sign_in_checker">SignInChecker</string>
     <string name="title_activity_schedule_view">ScheduleView</string>
+    <string name="title_activity_create_schedule_view">CreateScheduleView</string>
+    <string name="eight">8:00</string>
+    <string name="eighteen">18:00</string>
+    <string name="noon">12:00</string>
 
 </resources>
