@@ -130,7 +130,7 @@ CREATE TABLE IF NOT EXISTS `userschedules` (
   PRIMARY KEY (`referenceId`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
---
+create index ix_userschedules_date on  userschedules (date);--
 -- Dumping data for table `userschedules`
 --
 

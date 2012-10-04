@@ -18,14 +18,14 @@
 		<item value="127" key="DIALOG_Y_ORIGIN"/>
 		<item value="651" key="DIALOG_X_ORIGIN"/>
 	</section>
-	<section name="ZipFileImportWizard">
-	</section>
 	<section name="NewWizardAction">
 		<item value="com.android.ide.eclipse.editors.wizards.NewActivityWizard" key="NewWizardSelectionPage.STORE_SELECTED_ID"/>
 		<list key="NewWizardSelectionPage.STORE_EXPANDED_CATEGORIES_ID">
 			<item value="com.android.ide.eclipse.wizards.category"/>
 			<item value="org.eclipse.jdt.ui.java"/>
 		</list>
+	</section>
+	<section name="ZipFileImportWizard">
 	</section>
 	<section name="ImportExportAction">
 	</section>

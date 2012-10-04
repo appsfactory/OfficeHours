@@ -23,6 +23,7 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.AsyncTask;
@@ -46,7 +47,10 @@ public class ScheduleView extends Activity {
         new ChangeHeaderColor().execute();
         new PopulateScheduleTask().execute();
     }
-    
+    public void addSchedule(View view) {
+		Intent intent = new Intent(this, CreateScheduleView.class);
+		startActivity(intent);
+   	}
     /**refresh the schedule*/
     public void refreshSchedule(View view) {
     	
@@ -424,4 +428,5 @@ public class ScheduleView extends Activity {
 			return;
 		}
     }
+   
 }
