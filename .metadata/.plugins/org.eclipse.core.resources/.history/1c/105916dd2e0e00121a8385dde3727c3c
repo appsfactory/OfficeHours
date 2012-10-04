@@ -188,11 +188,11 @@ public class ScheduleView extends Activity {
 		}
     
     }
-    private class PopulateScheduleTask extends AsyncTask<Void, Boolean, String> {
+    private class PopulateScheduleTask extends AsyncTask<Void, Boolean, HttpResponse> {
 
 		@Override
-		protected String doInBackground(Void... params) {
-			publishProgress(true);
+		protected HttpResponse doInBackground(Void... params) {
+			publishProgress(true, null);
 			HttpClient client = new DefaultHttpClient();
 	        HttpPost post = new HttpPost(Constants.POST_URL);
 	    	JSONObject request = new JSONObject();
@@ -212,9 +212,7 @@ public class ScheduleView extends Activity {
 	    		HttpResponse response = client.execute(post);
 	    		if (response.getStatusLine().getStatusCode() == 200) {
 	    			publishProgress(false);
-					BufferedReader reader = new BufferedReader(new InputStreamReader(response.getEntity().getContent(), "UTF-8"));
-					String json = reader.readLine();
-	    			return json;
+	    			return response;
 	    		}
 	    		else {
 	    			databaseConnectionErrorMessage();
@@ -227,19 +225,22 @@ public class ScheduleView extends Activity {
 	    		return null;
 	    	}
 		}
-		protected void onProgressUpdate(Boolean bool) {
+		protected ProgressDialog onProgressUpdate(Boolean bool, ProgressDialog dialog) {
 	         if(bool) {
-	        	 ProgressDialog dialog = ProgressDialog.show(ScheduleView.this, "", 
+	        	 ProgressDialog _dialog = ProgressDialog.show(ScheduleView.this, "", 
 	                        "Loading Schedule. Please wait...", true);
-	        	 dialog.show();
-	        	 return;
+	        	 _dialog.show();
+	        	 return _dialog;
 	         }else {
-	        	
+	        	 
+	        	 return null;
 	         }
 	     }
 		@Override
-		protected void onPostExecute(String json) {
+		protected void onPostExecute(HttpResponse response) {
 				try {
+					BufferedReader reader = new BufferedReader(new InputStreamReader(response.getEntity().getContent(), "UTF-8"));
+					String json = reader.readLine();
 					JSONTokener tokener = new JSONTokener(json);
 					JSONArray jsonarray = new JSONArray(tokener);
 					if (jsonarray.length() == 0) {
@@ -291,7 +292,13 @@ public class ScheduleView extends Activity {
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block
 					Log.i("CATCH HIT: ", e.getMessage());
+				} catch (UnsupportedEncodingException e) {
+					// TODO Auto-generated catch block
+					Log.i("CATCH HIT: ", e.getMessage());
 				} catch (IllegalStateException e) {
+					// TODO Auto-generated catch block
+					Log.i("CATCH HIT: ", e.getMessage());
+				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					Log.i("CATCH HIT: ", e.getMessage());
 				}

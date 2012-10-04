@@ -291,7 +291,13 @@ public class ScheduleView extends Activity {
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block
 					Log.i("CATCH HIT: ", e.getMessage());
+				} catch (UnsupportedEncodingException e) {
+					// TODO Auto-generated catch block
+					Log.i("CATCH HIT: ", e.getMessage());
 				} catch (IllegalStateException e) {
+					// TODO Auto-generated catch block
+					Log.i("CATCH HIT: ", e.getMessage());
+				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					Log.i("CATCH HIT: ", e.getMessage());
 				}

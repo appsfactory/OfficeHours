@@ -212,6 +212,7 @@ public class ScheduleView extends Activity {
 	    		HttpResponse response = client.execute(post);
 	    		if (response.getStatusLine().getStatusCode() == 200) {
 	    			publishProgress(false);
+
 					BufferedReader reader = new BufferedReader(new InputStreamReader(response.getEntity().getContent(), "UTF-8"));
 					String json = reader.readLine();
 	    			return json;
@@ -291,7 +292,13 @@ public class ScheduleView extends Activity {
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block
 					Log.i("CATCH HIT: ", e.getMessage());
+				} catch (UnsupportedEncodingException e) {
+					// TODO Auto-generated catch block
+					Log.i("CATCH HIT: ", e.getMessage());
 				} catch (IllegalStateException e) {
+					// TODO Auto-generated catch block
+					Log.i("CATCH HIT: ", e.getMessage());
+				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					Log.i("CATCH HIT: ", e.getMessage());
 				}
