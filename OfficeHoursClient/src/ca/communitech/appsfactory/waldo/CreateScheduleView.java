@@ -9,8 +9,8 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONObject;
+
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -23,11 +23,10 @@ import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-import ca.communitech.appsfactory.waldo.R;
 
 public class CreateScheduleView extends Activity {
 
@@ -71,11 +70,9 @@ public class CreateScheduleView extends Activity {
 	    		   TextView daybutton = (TextView) daybuttons.getChildAt(i);
 	    		   daybutton.setClickable(false);
 	    		   //daybutton.setBackgroundColor(Color.argb(255, 200, 55, 55));
-    			   Log.i("soop", String.valueOf(daybutton.getHint()));
 
 	    		   if (String.valueOf(daybutton.getHint()).equals(startend[3])) {
-	    			   daybutton.setBackgroundColor(Color.argb(255, 0, 102, 200));
-	    			   Log.i("fired", "you heard me");
+	    			   daybutton.setBackgroundColor(Color.argb(255, 44, 132, 183));
 
 	    		   }
 	    	   }
@@ -101,20 +98,19 @@ public class CreateScheduleView extends Activity {
 	       
 	       startingTime = "12:00";
 	       finishingTime = "14:00";
-	       
-	       daySelected = new HashMap<String, String>(5);
-	       daySelected.put("Monday", "false");
-	       daySelected.put("Tuesday", "false");
-	       daySelected.put("Wednesday", "false");
-	       daySelected.put("Thursday", "false");
-	       daySelected.put("Friday", "false");
+	    
 	      //set font
-	       metro = Typeface.createFromAsset(getAssets(), "Segoe UI.ttf");
-	       TextView daytext = (TextView) findViewById(R.id.daybutton);
-	       daytext.setTypeface(metro, Typeface.NORMAL);
+	       metro = Typeface.createFromAsset(getAssets(), "HelveticaCY.dfont");
 	       
+	       LinearLayout sidebar = (LinearLayout) findViewById(R.id.sidebar);
+	       RelativeLayout relv = (RelativeLayout) findViewById(R.id.savecancel);
+	       
+	       Utils.setFont(sidebar, metro);
+	       Utils.setFont(daybuttons, metro);
+	       Utils.setFont(relv, metro);
 	       saving = false;
-
+	       
+	       RelativeLayout bar = (RelativeLayout) findViewById(R.id.bar);
 	     
 	    }
 	 	@Override
@@ -151,7 +147,7 @@ public class CreateScheduleView extends Activity {
 			
 			int Y = (int) event.getY() + blue.getTop() - 15;
 			
-			if (Y < blue.getBottom() - dp(30) && Y > bar.getTop()){
+			if (Y < blue.getBottom() - dp(30) && Y > bar.getTop() + dp(5)){
 				RelativeLayout.LayoutParams parms=new RelativeLayout.LayoutParams(blue.getWidth(),blue.getHeight());
 					parms.topMargin = Y;
 					parms.leftMargin = blue.getLeft();
@@ -180,7 +176,7 @@ public class CreateScheduleView extends Activity {
 				
 				int Y = (int) event.getY() + blue.getBottom() - 45;
 
-				if (Y - blue.getTop() > dp(30) && Y < bar.getBottom()){
+				if (Y - blue.getTop() > dp(30) && Y < bar.getBottom() - dp(5)){
 					RelativeLayout.LayoutParams parms=new RelativeLayout.LayoutParams(blue.getWidth(),blue.getHeight());
 						parms.topMargin = blue.getTop();
 						parms.leftMargin = blue.getLeft();
@@ -237,7 +233,8 @@ public class CreateScheduleView extends Activity {
     	TextView text = (TextView) view;
     	
     	if (daySelected.get((String) text.getHint()) == "false"){
-        	text.setBackgroundColor(Color.argb(255, 0, 102, 200));
+        	//text.setBackgroundColor(Color.argb(255, 0, 102, 200));
+        	text.setBackgroundColor(Color.argb(255, 44, 132, 183));
         	daySelected.put((String) text.getHint(), "true");
     	} else {
     		text.setBackgroundColor(Color.BLACK);
@@ -248,18 +245,21 @@ public class CreateScheduleView extends Activity {
     
     
     private void helperText(RelativeLayout view, int Y, int width, String location){
+    	TextView helper = new TextView(getBaseContext());
+    	View bar = findViewById(R.id.bar);
     	View rhelper;
     	if (location == "top") {
     		rhelper = findViewById(555);
     	} else {
     		rhelper = findViewById(556);
     	}
-    	View bar = findViewById(R.id.bar);
     	view.removeView(rhelper);
-    	TextView helper = new TextView(getBaseContext());
+
+
     	int timeY = Y - bar.getTop();
     	int H=1;
     	int M=1;
+    	
     	String Mstring = "";
 		for (int i=1;i<=11;i++){
 			if (timeY <= bar.getHeight()/10*i){
@@ -267,13 +267,18 @@ public class CreateScheduleView extends Activity {
 				for (int a=1;a<=40;a++){
 					if (timeY <= bar.getHeight()/40*a){
 						M = 15*(a - (i-1)*4 - 1);
-						if (String.valueOf(M).length() < 2) { Mstring = "0" + String.valueOf(M);} else { Mstring = String.valueOf(M);}
+						if (String.valueOf(M).length() < 2) { 
+							Mstring = "0" + String.valueOf(M);
+						} else { 
+							Mstring = String.valueOf(M);
+						}
 					break;
 					}
 				}
 				break;
 			}
 		}
+		//Set helper text parameters
     	helper.setText(String.valueOf(H) + ":" + Mstring);
 		helper.setTextSize(bar.getWidth() / 6);
 		if (location == "top"){
@@ -283,11 +288,13 @@ public class CreateScheduleView extends Activity {
 		}
 		helper.setTypeface(metro, Typeface.NORMAL);
 		RelativeLayout.LayoutParams parms = new RelativeLayout.LayoutParams(width, dp(70));
-			parms.topMargin = Y - dp(10);
+			parms.topMargin = Y - dp(25);
 			parms.leftMargin = bar.getLeft() + bar.getWidth() + dp(5);
 			parms.width = RelativeLayout.LayoutParams.WRAP_CONTENT;
 		helper.setLayoutParams(parms);
 		view.addView(helper);
+		
+		//Set start or finish time (whichever applies) to calculated time value
 		if (location=="top") {
 			startingTime = (String) helper.getText();
 		} else if (location == "bottom") {
@@ -298,13 +305,12 @@ public class CreateScheduleView extends Activity {
     
     
     private void databaseConnectionErrorMessage() {
-		Context context = getApplicationContext();
-		CharSequence errormessage = "Error connecting to database. Please try again in a few moments.";
-		int duration = Toast.LENGTH_SHORT;
-		
-		//return that user messed up
-		Toast toastiness = Toast.makeText(context, errormessage, duration);
-		toastiness.show();
+    	new Thread(new Runnable() {
+			@Override
+			public void run() {
+				Utils.errormessage("Error connecting to database. Please try again in a few moments", getBaseContext());
+			}
+		}).start();
 	}
     
     private class SaveScheduleTask extends AsyncTask<String, Integer, HttpResponse> {
@@ -355,7 +361,10 @@ public class CreateScheduleView extends Activity {
     	View bar = findViewById(R.id.bar);
     	int H=Integer.parseInt(start.substring(0, 2));
     	int M=Integer.parseInt(start.substring(3,5));
+    	//calculate height of bar
 		int top= (bar.getHeight()/40)*((M/15 + 1 + 4*(H-7)));
+    	Log.i("H", String.valueOf(top));
+		//re-use H and M variables because why not
     	H=Integer.parseInt(end.substring(0, 2));
     	M=Integer.parseInt(end.substring(3,5)); 
     	int bottom= bar.getHeight()/40*(M/15 + 1 + 4*(H-7));
