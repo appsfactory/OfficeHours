@@ -52,7 +52,7 @@
             android:hint="Password"
             android:inputType="textPassword"
             android:singleLine="true"
-            android:imeOptions="actionDone" />
+            android:imeOptions="actionGo" />
     </LinearLayout>
 
     <TextView
