@@ -15,7 +15,7 @@
         android:textOn="I&apos;m at the Hub"
         android:textSize="23sp"
         android:textColor="#FFFFFF"
-        android:background="@drawable/toggle_blue" />
+        android:background="@drawable/button_blue" />
 
     <TextView
         android:id="@+id/textView1"
