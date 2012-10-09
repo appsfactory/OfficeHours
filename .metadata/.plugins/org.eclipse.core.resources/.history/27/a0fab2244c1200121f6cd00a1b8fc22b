@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 
 import org.apache.http.HttpResponse;
@@ -534,7 +533,7 @@ public class ScheduleView extends Activity {
 		 * @param referenceId
 		 * @param day
 		 * @throws ParseException
-		 */ 
+		 */
 		private void addScheduleEvent(final String startTime_s, final String endTime_s,
 				int columnId, final String referenceId, final String day) throws ParseException {
 			ViewGroup col = (ViewGroup) findViewById(columnId);        
@@ -562,10 +561,7 @@ public class ScheduleView extends Activity {
 			Date endTime = df.parse(endTime_s);
 			
 				//do math and set params!
-
 			double topmargin = startTime.getTime() - 28800000.0; //8 AM in MS
-			//clean time-zone offsets
-			topmargin -= (startTime.getTimezoneOffset()*60000);
 			topmargin *= Constants.MS_TO_DP;
 			topmargin += 3;
 			topmargin *= (getResources().getDisplayMetrics().density);
