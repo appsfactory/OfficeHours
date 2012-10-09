@@ -161,11 +161,7 @@ public class CreateScheduleView extends Activity {
 			return true;
 		}
 	};
-//	@Override
-//    public void onStop() {
-////		super.onStop();
-////    	finish();
-//    }
+
 	
 	/**
 	 * Listens for a touch event at the bottom edge of the box and drags accordingly
