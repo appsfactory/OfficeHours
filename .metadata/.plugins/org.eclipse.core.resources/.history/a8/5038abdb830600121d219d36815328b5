@@ -1,9 +1,0 @@
-<resources>
-
-    <string name="app_name">Office Hours @ the Hub</string>
-    <string name="hello_world">Hello world!</string>
-    <string name="menu_settings">Settings</string>
-    <string name="title_activity_sign__in">Sign_In</string>
-    <string name="Schedule">My Schedule</string>
-
-</resources>

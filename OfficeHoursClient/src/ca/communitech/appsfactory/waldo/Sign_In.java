@@ -21,6 +21,7 @@ import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.view.ViewDebug.FlagToString;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 import ca.communitech.appsfactory.waldo.R;
@@ -112,6 +113,7 @@ public class Sign_In extends Activity {
 		editor.putString("authstring", (" " + Constants.AUTH_SPLITTER + " "));
 		editor.commit();
 		Intent logged_in_intent = new Intent(this, Log_In.class);
+		logged_in_intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 		startActivity(logged_in_intent);
     }
 }
