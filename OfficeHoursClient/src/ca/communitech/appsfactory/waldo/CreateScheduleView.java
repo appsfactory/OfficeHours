@@ -23,7 +23,6 @@ import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -76,6 +75,10 @@ public class CreateScheduleView extends Activity {
 
 	    		   }
 	    	   }
+	    	   TextView addheader = (TextView) findViewById(R.id.addheader);
+	    	   TextView updateheader = (TextView) findViewById(R.id.updateheader);
+	    	   addheader.setVisibility(View.INVISIBLE);
+	    	   updateheader.setVisibility(View.VISIBLE);
 	       }else{
 	    	   for (int i=0;i < daybuttons.getChildCount(); i++){
 	    		   TextView daybutton = (TextView) daybuttons.getChildAt(i);
@@ -110,7 +113,6 @@ public class CreateScheduleView extends Activity {
 	       Utils.setFont(relv, metro);
 	       saving = false;
 	       
-	       RelativeLayout bar = (RelativeLayout) findViewById(R.id.bar);
 	     
 	    }
 	 	@Override
@@ -237,7 +239,7 @@ public class CreateScheduleView extends Activity {
         	text.setBackgroundColor(Color.argb(255, 44, 132, 183));
         	daySelected.put((String) text.getHint(), "true");
     	} else {
-    		text.setBackgroundColor(Color.BLACK);
+    		text.setBackgroundColor(Color.argb(0,0,0,0));
     		daySelected.put((String) text.getHint(), "false");
     	}
     }

@@ -9,11 +9,26 @@
     	android:layout_height="match_parent"
     	android:id="@+id/relscreen">
 		<TextView android:text="Add"
+		    android:id="@+id/addheader"
 		    android:textColor="#222"
 		    android:textSize="150dp"
-		    android:layout_marginLeft="50dp"
+		   	android:height="200dp"
+		   	android:width="200dp"
+		    android:layout_marginLeft="40dp"
+		 	android:layout_marginTop="-20dp"
 		    android:layout_height="wrap_content"
-		    android:layout_width="wrap_content"/>
+		    android:layout_width="match_parent"/>
+		<TextView android:text="Update"
+		    android:id="@+id/updateheader"
+		    android:textColor="#222"
+		    android:textSize="80dp"
+		   	android:height="200dp"
+		   	android:width="200dp"
+		    android:layout_marginLeft="40dp"
+		 	android:layout_marginTop="-20dp"
+		    android:layout_height="wrap_content"
+		    android:layout_width="match_parent"
+		    android:visibility="invisible"/>
 		    
     		<LinearLayout
     		    android:id="@+id/sidebar"
@@ -76,7 +91,7 @@
 	    		    android:layout_width="wrap_content"
 	    		    android:layout_height="wrap_content"
 	    		    android:layout_marginLeft="20dp"
-	    		    android:layout_weight="1.63"
+	    		    android:layout_weight="1.28"
 	    		    android:text="@string/eighteen"
 	    		    android:textColor="#FFFFFF"
 	    		    android:textSize="@dimen/timesize" />
@@ -90,6 +105,8 @@
 		    android:layout_marginLeft="@dimen/leftMargin"
 		    android:layout_marginTop="@dimen/topMargin"
 		   	/>
+		    
+	    	
 	    	<RelativeLayout
 	    	  android:id="@+id/bluebox"
 	    	 android:background="@drawable/bluebox"
