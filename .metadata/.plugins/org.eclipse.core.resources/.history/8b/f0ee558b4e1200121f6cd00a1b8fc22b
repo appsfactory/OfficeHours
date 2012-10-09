@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 
 import org.apache.http.HttpResponse;
@@ -563,8 +562,8 @@ public class ScheduleView extends Activity {
 			
 				//do math and set params!
 			double topmargin = startTime.getTime() - 28800000.0; //8 AM in MS
-			//clean time-zone offsets
-			topmargin -= (startTime.getTimezoneOffset()*60000);
+			Log.i("TIME NIGGA", startTime.toString());
+			Log.i("TIME IN MS", Long.toString(startTime.getTime()));
 			topmargin *= Constants.MS_TO_DP;
 			topmargin += 3;
 			topmargin *= (getResources().getDisplayMetrics().density);

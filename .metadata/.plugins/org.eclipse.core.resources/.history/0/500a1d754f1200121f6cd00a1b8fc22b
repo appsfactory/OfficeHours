@@ -563,7 +563,6 @@ public class ScheduleView extends Activity {
 			
 				//do math and set params!
 			double topmargin = startTime.getTime() - 28800000.0; //8 AM in MS
-			//clean time-zone offsets
 			topmargin -= (startTime.getTimezoneOffset()*60000);
 			topmargin *= Constants.MS_TO_DP;
 			topmargin += 3;
@@ -571,6 +570,7 @@ public class ScheduleView extends Activity {
 			topmargin += 0.5f;
 			
 			double height = endTime.getTime() - startTime.getTime() + 0.0;
+			height -= (startTime.getTimezoneOffset()*60000);
 			height *= Constants.MS_TO_DP;
 			height -= 5.0;
 			height *= (getResources().getDisplayMetrics().density);
