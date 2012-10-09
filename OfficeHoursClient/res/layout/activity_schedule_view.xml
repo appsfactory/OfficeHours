@@ -77,13 +77,12 @@
         android:scrollbars="none" >"
 
 		<!--  GRID/BORDERS -->
+
         <RelativeLayout
             android:id="@+id/relativeLayout242"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:padding="0dp" >
-
-
             
             <View android:background="#aaa" android:layout_width = "fill_parent" android:layout_height="1dp" android:layout_marginTop="0dp" />
             <View android:background="#444" android:layout_width = "fill_parent" android:layout_height="1dp" android:layout_marginTop="40dp"/>
@@ -116,7 +115,7 @@
             <LinearLayout
                 android:id="@+id/linearLayout2"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:padding="0dp" >
 				
                 <!-- SIDEBAR -->
@@ -228,7 +227,7 @@
                     <LinearLayout
                         android:id="@+id/linearLayout3"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentRight="true"
                         android:layout_alignParentTop="true"
@@ -294,20 +293,24 @@
         
         <Button 
             android:id="@+id/addbutton"
+            android:background="@drawable/button_blue"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="1"
+            android:layout_marginBottom="2dp"
+            android:textColor="#FFF"
             android:text="Add" 
-            android:onClick="addSchedule"
-            android:background="@drawable/button_blue" />
+            android:onClick="addSchedule" />
         <Button 
             android:id="@+id/refreshbutton"
+            android:background="@drawable/button_blue"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="1"
+            android:textColor="#FFF"
+            android:layout_marginBottom="2dp"
             android:onClick="refreshSchedule"
-            android:text="Refresh" 
-            android:background="@drawable/button_blue" />
+            android:text="Refresh" />
         
     </LinearLayout>
 

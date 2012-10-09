@@ -18,6 +18,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
+import android.R;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -34,43 +35,64 @@ import android.view.Menu;
 import android.view.View;
 import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class ScheduleView extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schedule_view);
+		Utils.errormessage("Loading...", getBaseContext());
         new ChangeHeaderColor().execute();
         new PopulateScheduleTask().execute();
+        LinearLayout lin = (LinearLayout) findViewById(R.id.linearLayout3);
+        for (int i = 0; i < lin.getChildCount(); i++){
+        	lin.getChildAt(i).setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v){
+					onBlankClick(v);
+				}
+        	});
+        }
     }
-    
-//    @Override
-//    public void onStop() {
-//    	super.onStop();
-//    	finish();
-//    }
+
+
     public void addSchedule(View view) {
 		Intent intent = new Intent(this, CreateScheduleView.class);
 		startActivity(intent);
    	}
+    
+    @Override
+    public void onResume(){
+    	super.onResume();
+    	View view = findViewById(R.id.refreshbutton);
+    	refreshSchedule(view);
+    	
+    }
+    @Override
+ 	public void onWindowFocusChanged(boolean hasFocus) {
+ 		super.onWindowFocusChanged(hasFocus);
+ 		View view = findViewById(R.id.refreshbutton);
+    	onBlankClick(view);
+ 	}
+    
     /**refresh the schedule*/
     public void refreshSchedule(View view) {
     	
     	//Remove all views from the columns
     	RelativeLayout column = (RelativeLayout) findViewById(R.id.moncolumn);
-    	column.removeAllViewsInLayout();
+    	column.removeAllViews();
     	column = (RelativeLayout) findViewById(R.id.tuecolumn);
-    	column.removeAllViewsInLayout();
+    	column.removeAllViews();
     	column = (RelativeLayout) findViewById(R.id.wedcolumn);
-    	column.removeAllViewsInLayout();
+    	column.removeAllViews();
     	column = (RelativeLayout) findViewById(R.id.thucolumn);
-    	column.removeAllViewsInLayout();
+    	column.removeAllViews();
     	column = (RelativeLayout) findViewById(R.id.fricolumn);
-    	column.removeAllViewsInLayout();
+    	column.removeAllViews();
     	
     	
     	//Change header colors back
@@ -97,7 +119,7 @@ public class ScheduleView extends Activity {
 		return;
     }
 
-    /** get the current date from the server*/
+    /** get the current date from the server - must be called in a separate thread*/
 	private HttpResponse getDate() {
 		HttpClient client = new DefaultHttpClient();
         HttpPost post = new HttpPost(Constants.POST_URL);
@@ -114,24 +136,25 @@ public class ScheduleView extends Activity {
     			return response;
     		}
     		else {
-    			databaseConnectionErrorMessage();
+    			//databaseConnectionErrorMessage();
     			return null;
     		}
     	} catch (Exception e){
-    		databaseConnectionErrorMessage();
+    		//databaseConnectionErrorMessage();
     		return null;
     	}
 	}
 	
 	/**Toasts a generic database error message */
 	private void databaseConnectionErrorMessage() {
-		Context context = getApplicationContext();
+		/*Context context = getApplicationContext();
 		CharSequence errormessage = "Error connecting to database. Please try again in a few moments.";
 		int duration = Toast.LENGTH_SHORT;
 		
 		//return that user messed up
 		Toast toastiness = Toast.makeText(context, errormessage, duration);
-		toastiness.show();
+		toastiness.show();*/
+		Utils.errormessage("Error connecting to database. Please try again in a few moments", getBaseContext());
 	}
 
     @Override
@@ -198,6 +221,153 @@ public class ScheduleView extends Activity {
 		}
     
     }
+    
+    private void onColumnClick(final View view, final String start, final String end) {
+    
+    	Button addbutton = (Button) findViewById(R.id.addbutton);
+    	Button refreshbutton = (Button) findViewById(R.id.refreshbutton);   	
+    	LinearLayout rl = (LinearLayout) findViewById(R.id.linearLayout3);
+    	if (view.getId() == 665){
+    		onBlankClick(view);
+    		return;
+    	} else {
+	    	for (int i=0; i < rl.getChildCount(); i++){
+	    		RelativeLayout col = (RelativeLayout) rl.getChildAt(i);
+	    		for (int a=0; a < col.getChildCount(); a++){
+	    			col.getChildAt(a).setId(666);
+	    			col.getChildAt(a).setBackgroundColor(Color.argb(255, 119, 119, 119));
+	    		}
+	    	}
+   
+	    	view.setBackgroundColor(Color.WHITE);
+	    	view.setId(665);
+	    	addbutton.setText("Update");
+	    	refreshbutton.setText("Delete");
+	    	addbutton.setOnClickListener(new View.OnClickListener() {
+	    		@Override
+	    		public void onClick(View v){
+	    			Intent intent = new Intent(getBaseContext(), CreateScheduleView.class);
+	    			String[] value;
+	    			value = new String[10];
+	    			value[0] = start;
+	    			value[1] = end;
+	    			String[] tagdata = (String[]) view.getTag();
+	    			value[2] = (String) tagdata[0];
+	    			value[3] = (String) tagdata[1];
+	    			intent.putExtra("ca.communitech.appsfactory.waldo.startEnd", value);
+	    			startActivity(intent);
+	    		}
+	    		
+	    	});
+	    	refreshbutton.setOnClickListener(new View.OnClickListener() {
+	    		@Override
+	    		public void onClick(final View v){
+	    			new AlertDialog.Builder(v.getContext())
+					.setTitle("Delete Event")
+					.setMessage("Do you really want to delete this event?")
+					.setPositiveButton("You Bet!", new DialogInterface.OnClickListener() {
+						
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+	    	    			RelativeLayout relv = (RelativeLayout) view;
+	    	    			deleteView(relv);
+				    	    refreshSchedule(relv);
+				    	    onBlankClick(relv);
+							return;
+						}
+					})
+					.setNegativeButton("Nope!", null)
+					.show();
+	    		}
+	    	});
+    	}
+    };
+    
+    private void onBlankClick(View v){
+    	Button addbutton = (Button) findViewById(R.id.addbutton);
+    	Button refreshbutton = (Button) findViewById(R.id.refreshbutton);
+    	LinearLayout rl = (LinearLayout) findViewById(R.id.linearLayout3);
+    	for (int i=0; i < rl.getChildCount(); i++){
+    		RelativeLayout col = (RelativeLayout) rl.getChildAt(i);
+    		for (int a=0; a < col.getChildCount(); a++){
+    			col.getChildAt(a).setId(666);
+    			col.getChildAt(a).setBackgroundColor(Color.argb(255, 119, 119, 119));
+    		}
+    	}
+    	addbutton.setText("Add");
+    	refreshbutton.setText("Refresh");
+    	addbutton.setOnClickListener(new View.OnClickListener() {
+    		@Override
+    		public void onClick(View v){
+    			Intent intent = new Intent(getBaseContext(), CreateScheduleView.class);
+    			startActivity(intent);
+    		}
+    		
+    	});
+    	refreshbutton.setOnClickListener(new View.OnClickListener() {
+    		@Override
+    		public void onClick(View v){
+    			refreshSchedule(v);
+    		}
+    	});
+    }
+    
+    
+    private void deleteView (RelativeLayout relv) {
+    	final TextView starttime = (TextView) relv.getChildAt(1);
+		final TextView endtime = (TextView)relv.getChildAt(2);
+		View parent = (View) relv.getParent();
+		final String date;
+		int id = parent.getId();
+		switch (id) {
+		case R.id.moncolumn:
+			date = "Monday";
+			break;
+		case R.id.tuecolumn:
+			date = "Tuesday";
+			break;
+		case R.id.wedcolumn:
+			date = "Wednesday";
+			break;
+		case R.id.thucolumn:
+			date = "Thursday";
+			break;
+		case R.id.fricolumn:
+			date = "Friday";
+			break;
+
+		default:
+			date = null;
+			break;
+		}
+	    new Thread(new Runnable() {
+			
+			@Override
+			public void run() {
+				HttpClient client = new DefaultHttpClient();
+				HttpPost post = new HttpPost (Constants.POST_URL);        	
+				try {
+					JSONObject data_json = new JSONObject();
+					data_json.put("userName", getIntent().getExtras().getString(Log_In.USERNAME));
+					data_json.put("organizationId", Constants.ORGANIZATION_ID);
+					data_json.put("locationCode", Constants.LOCATION);
+					data_json.put("branchId", Constants.BRANCH_ID);
+					data_json.put("action", "deleteSchedule");
+					data_json.put("startingTime", starttime.getText().toString());
+					data_json.put("finishingTime", endtime.getText().toString());
+					data_json.put("selectedDate", date);
+					StringEntity data_string = new StringEntity(data_json.toString());
+					post.setEntity(data_string);
+					post.setHeader("dataType", "json");
+					HttpResponse response = client.execute(post);
+				} catch(Exception e) {
+					//TODO: handle error
+				}
+			}
+		}).start();
+    }
+		
+		
     private class PopulateScheduleTask extends AsyncTask<Void, Boolean, String> {
 
 		@Override
@@ -209,6 +379,7 @@ public class ScheduleView extends Activity {
 	    	SharedPreferences auth_stuff = getSharedPreferences(Constants.SHARED_PREFS_FILE, MODE_PRIVATE);
 	        String string = auth_stuff.getString("authstring", " " + Constants.AUTH_SPLITTER + " ");
 	        string = string.split(Constants.AUTH_SPLITTER)[0];
+	        publishProgress();
 	    	try {
 	        	request.put("action", "showSchedule");
 	        	request.put("branchId", Constants.BRANCH_ID);
@@ -227,6 +398,7 @@ public class ScheduleView extends Activity {
 	    			return json;
 	    		}
 	    		else {
+
 	    			databaseConnectionErrorMessage();
 	    			publishProgress(false);
 	    			return null;
@@ -247,46 +419,55 @@ public class ScheduleView extends Activity {
 	        	
 	         }
 	     }
+		/*@Override
+		protected void onProgressUpdate(Integer...values){
+			super.onProgressUpdate(values);
+			Utils.errormessage("Loading...", getBaseContext());
+		}*/
+		
 		@Override
 		protected void onPostExecute(String json) {
 				try {
 					JSONTokener tokener = new JSONTokener(json);
 					JSONArray jsonarray = new JSONArray(tokener);
 					if (jsonarray.length() == 0) {
-						Context context = getApplicationContext();
+						/*Context context = getApplicationContext();
 						CharSequence errormessage = "There don't seem to be any scheduled events in our database.";
 						int duration = Toast.LENGTH_SHORT;
 						
 						//return that user messed up
 						Toast toastiness = Toast.makeText(context, errormessage, duration);
-						toastiness.show();
+						toastiness.show();*/
+						Utils.errormessage("There don't seem to be any scheduled events in our database.", getApplicationContext());
 					}
 					else{
 						//Iterate through the array of JSONObjects, populate for each
+						Utils.errormessage("Load Complete!", getBaseContext());
 						for(int i=0; i < jsonarray.length(); i++){
 							String startTime_s = jsonarray.getJSONObject(i).getString("startTime");
 							String endTime_s = jsonarray.getJSONObject(i).getString("endTime");
-							
+							String referenceId = jsonarray.getJSONObject(i).getString("referenceId");
+							String day = jsonarray.getJSONObject(i).getString("weekday");
 							switch (Constants.DAYS.valueOf(jsonarray.getJSONObject(i).getString("weekday"))) {
 							case Monday:
 								addScheduleEvent(startTime_s, endTime_s,
-										R.id.moncolumn);
+										R.id.moncolumn, referenceId, day);
 								break;
 							case Tuesday:
 								addScheduleEvent(startTime_s, endTime_s,
-										R.id.tuecolumn);
+										R.id.tuecolumn, referenceId, day);
 								break;
 							case Wednesday:
 								addScheduleEvent(startTime_s, endTime_s,
-										R.id.wedcolumn);
+										R.id.wedcolumn, referenceId, day);
 								break;
 							case Thursday:
 								addScheduleEvent(startTime_s, endTime_s,
-										R.id.thucolumn);
+										R.id.thucolumn, referenceId, day);
 								break;
 							case Friday:
 								addScheduleEvent(startTime_s, endTime_s,
-										R.id.fricolumn);
+										R.id.fricolumn, referenceId, day);
 								break;
 							default:
 								//well shit
@@ -315,8 +496,8 @@ public class ScheduleView extends Activity {
 			return string;
 		}
 
-		private void addScheduleEvent(String startTime_s, String endTime_s,
-				int columnId) throws ParseException {
+		private void addScheduleEvent(final String startTime_s, final String endTime_s,
+				int columnId, final String referenceId, final String day) throws ParseException {
 			ViewGroup col = (ViewGroup) findViewById(columnId);        
 			
 			//Create a layout to hold the event
@@ -342,7 +523,7 @@ public class ScheduleView extends Activity {
 			Date endTime = df.parse(endTime_s);
 			
 				//do math and set params!
-			double topmargin = startTime.getTime() - 46800000.0;
+			double topmargin = startTime.getTime() - 46800000.0; //8 AM in MS
 			topmargin *= Constants.MS_TO_DP;
 			topmargin += 3;
 			topmargin *= (getResources().getDisplayMetrics().density);
@@ -353,79 +534,21 @@ public class ScheduleView extends Activity {
 			height -= 5.0;
 			height *= (getResources().getDisplayMetrics().density);
 			height += 0.5f;
-			layout.setOnLongClickListener(new OnLongClickListener() {
+			
+			layout.setClickable(true);
+			layout.setOnClickListener (new View.OnClickListener() {
 				
 				@Override
-				public boolean onLongClick(final View v) {
-					new AlertDialog.Builder(v.getContext())
-					.setTitle("Delete Event")
-					.setMessage("Do you really want to delete this event?")
-					.setPositiveButton("You Bet!", new DialogInterface.OnClickListener() {
-						
-						@Override
-						public void onClick(DialogInterface dialog, int which) {
-	    	    			RelativeLayout relv = (RelativeLayout) v;
-	    	    			final TextView starttime = (TextView) relv.getChildAt(1);
-	    	    			final TextView endtime = (TextView)relv.getChildAt(2);
-	    	    			View parent = (View) relv.getParent();
-	    	    			final String date;
-	    	    			int id = parent.getId();
-	    	    			switch (id) {
-							case R.id.moncolumn:
-								date = "Monday";
-								break;
-							case R.id.tuecolumn:
-								date = "Tuesday";
-								break;
-							case R.id.wedcolumn:
-								date = "Wednesday";
-								break;
-							case R.id.thucolumn:
-								date = "Thursday";
-								break;
-							case R.id.fricolumn:
-								date = "Friday";
-								break;
-
-							default:
-								date = null;
-								break;
-							}
-				    	    new Thread(new Runnable() {
-								
-								@Override
-								public void run() {
-									HttpClient client = new DefaultHttpClient();
-									HttpPost post = new HttpPost (Constants.POST_URL);        	
-									try {
-										JSONObject data_json = new JSONObject();
-										data_json.put("userName", getIntent().getExtras().getString(Log_In.USERNAME));
-										data_json.put("organizationId", Constants.ORGANIZATION_ID);
-										data_json.put("locationCode", Constants.LOCATION);
-										data_json.put("branchId", Constants.BRANCH_ID);
-										data_json.put("action", "deleteSchedule");
-										data_json.put("startingTime", starttime.getText().toString());
-										data_json.put("finishingTime", endtime.getText().toString());
-										data_json.put("selectedDate", date);
-										StringEntity data_string = new StringEntity(data_json.toString());
-										post.setEntity(data_string);
-										post.setHeader("dataType", "json");
-										HttpResponse response = client.execute(post);
-									} catch(Exception e) {
-										//TODO: handle error
-									}
-								}
-							}).start();
-				    	    refreshSchedule(v);
-							return;
-						}
-					})
-					.setNegativeButton("Nope!", null)
-					.show();
-					return true;
+				public void onClick(final View v) {
+					onColumnClick(v, startTime_s, endTime_s);
+					
 				}
 			});
-			LinearLayout.LayoutParams lparams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT, (int)height);
+			LinearLayout.LayoutParams lparams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, (int)height);
+			String[] layoutdata = new String[2];
+			layoutdata[0] = referenceId;
+			layoutdata[1] = day;
+			layout.setTag(layoutdata);
 			col.addView(layout, lparams);
 			RelativeLayout.LayoutParams legitparams = (android.widget.RelativeLayout.LayoutParams) layout.getLayoutParams();
 			legitparams.topMargin = (int)topmargin;

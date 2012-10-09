@@ -18,16 +18,18 @@
     		    android:orientation="vertical" >
 
 	    		<TextView android:text="@string/eight"
-	    		    		android:id="@+id/eight"
+			        		android:id="@+id/daybutton"
 	    		    		android:textColor="#FFFFFF"
 	    		    		android:textSize="@dimen/timesize"
 	    		    		android:layout_weight = "1"
 	    		    		android:layout_marginLeft="20dp"
-	    		    		android:layout_width = "wrap_content"
+	    		    		android:layout_width="match_parent"
 	    		    		android:layout_height="wrap_content"
+	    		    		android:gravity="right"
 	    		    		
 	    		    		/> 
 	    		<TextView android:text="10:00"
+	    		    		android:id="@+id/daybutton"
 	    		    		android:textColor="#FFFFFF"
 	    		    		android:textSize="@dimen/timesize"
 	    		    		android:layout_weight="1"
@@ -36,6 +38,7 @@
 	    		    		android:layout_height="wrap_content"
 	    		    		/> 
 	    		<TextView android:text="@string/noon"
+	    		    	android:id="@+id/daybutton"
 	    		    		android:textColor="#FFFFFF"
 	    		    		android:textSize="@dimen/timesize"
 	    		    		android:layout_weight="1"
@@ -43,7 +46,9 @@
 	    		    		android:layout_width = "wrap_content"
 	    		    		android:layout_height="wrap_content"
 	    		    		/> 
-	    		<TextView android:text="14:00"    		    		android:textColor="#FFFFFF"
+	    		<TextView android:text="14:00"   
+	    		    		android:id="@+id/daybutton" 		    		
+	    		    		android:textColor="#FFFFFF"
 	    		    		android:textSize="@dimen/timesize"
 	    		    		android:layout_weight="1"
 	    		    		android:layout_marginLeft="20dp"
@@ -51,6 +56,7 @@
 	    		    		android:layout_height="wrap_content"
 	    		    		/> 
     			<TextView android:text="16:00"
+    			    		android:id="@+id/daybutton"
 	    		    		android:textColor="#FFFFFF"
 	    		    		android:textSize="@dimen/timesize"
 	    		    		android:layout_weight="1"
@@ -60,10 +66,11 @@
 	    		    		/> 
 
 	    		<TextView
+	    		    android:id="@+id/daybutton"
 	    		    android:layout_width="wrap_content"
 	    		    android:layout_height="wrap_content"
 	    		    android:layout_marginLeft="20dp"
-	    		    android:layout_weight="1.04"
+	    		    android:layout_weight="1.22"
 	    		    android:text="@string/eighteen"
 	    		    android:textColor="#FFFFFF"
 	    		    android:textSize="@dimen/timesize" />
@@ -109,19 +116,44 @@
 			    android:layout_centerHorizontal="true"
 			    android:textColor="#FFFFFF"
 			    android:textSize="20dp" />
+			
+			     <Button
+	    	     android:layout_width="wrap_content"
+	    	     android:layout_alignParentBottom="true"
+	    	     android:layout_alignParentRight="true"
+	    	     android:layout_marginBottom="10dp"
+	    	     android:layout_marginRight="10dp"
+	    	     android:layout_height="wrap_content"
+	    	     android:text="Save"
+	    	     android:textSize="20dp" 
+	    	     android:onClick="Save">	 		
+				</Button>
+				<Button
+	    	     android:layout_width="wrap_content"
+	    	     android:layout_alignParentBottom="true"
+	    	     android:layout_alignParentLeft="true"
+	    	     android:layout_marginBottom="10dp"
+	    	     android:layout_marginLeft="10dp"
+	    	     android:layout_height="wrap_content"
+	    	     android:text="Cancel"
+	    	     android:textSize="20dp" 
+	    	     android:onClick="Cancel">	 		
+				</Button>
+				
 			<LinearLayout android:layout_alignParentRight="true"
 			    android:layout_height="@dimen/barheight"
 			    android:layout_width="60dp"
 			    android:orientation ="vertical"
 			    android:layout_marginTop="@dimen/topMargin"
 			    android:clickable="false"
+			    android:id = "@+id/daybuttons"
 			   	>		    
 			    <TextView android:text = "M"
 			        android:id="@+id/daybutton"
 			        android:layout_weight = "1"
 			        android:textSize = "@dimen/timesize"
 			        android:layout_width="match_parent"
-			        android:layout_height="wrap_content"
+			        android:layout_height="0dp"
 			        android:gravity="center"
 			        android:onClick="dayTextClick"
 			        android:clickable="true"
@@ -132,7 +164,7 @@
 			        android:layout_weight = "1"
 			        android:textSize = "@dimen/timesize"
 			        android:layout_width="match_parent"
-			        android:layout_height="wrap_content"
+			        android:layout_height="0dp"
 			        android:gravity="center"
 			        android:onClick="dayTextClick"
 			        android:clickable="true"
@@ -142,7 +174,7 @@
 			        android:layout_weight = "1"
 			        android:textSize = "@dimen/timesize"
 			        android:layout_width="match_parent"
-			        android:layout_height="wrap_content"
+			        android:layout_height="0dp"
 			        android:gravity="center"
 			        android:onClick="dayTextClick"
 			        android:clickable="true"
@@ -152,7 +184,7 @@
 			        android:layout_weight = "1"
 			        android:textSize = "@dimen/timesize"
 			        android:layout_width="match_parent"
-			        android:layout_height="wrap_content"
+			        android:layout_height="0dp"
 			        android:gravity="center"
 			        android:onClick="dayTextClick"
 			        android:clickable="true"
@@ -162,7 +194,7 @@
 			        android:layout_weight = "1"
 			        android:textSize = "@dimen/timesize"
 			        android:layout_width="match_parent"
-			        android:layout_height="wrap_content"
+			        android:layout_height="0dp"
 			        android:gravity="center"
 			        android:onClick="dayTextClick"
 			        android:clickable="true"
