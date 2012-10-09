@@ -17,7 +17,8 @@
 		    android:layout_marginLeft="40dp"
 		 	android:layout_marginTop="-20dp"
 		    android:layout_height="wrap_content"
-		    android:layout_width="match_parent"/>
+		    android:layout_width="match_parent"
+		    android:visibility="invisible"/>
 		<TextView android:text="Update"
 		    android:id="@+id/updateheader"
 		    android:textColor="#222"
@@ -91,7 +92,7 @@
 	    		    android:layout_width="wrap_content"
 	    		    android:layout_height="wrap_content"
 	    		    android:layout_marginLeft="20dp"
-	    		    android:layout_weight="1.28"
+	    		    android:layout_weight="1.20"
 	    		    android:text="@string/eighteen"
 	    		    android:textColor="#FFFFFF"
 	    		    android:textSize="@dimen/timesize" />

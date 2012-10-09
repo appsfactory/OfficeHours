@@ -75,10 +75,11 @@ public class CreateScheduleView extends Activity {
 
 	    		   }
 	    	   }
-	    	   TextView addheader = (TextView) findViewById(R.id.addheader);
-	    	   TextView updateheader = (TextView) findViewById(R.id.updateheader);
-	    	   addheader.setVisibility(View.INVISIBLE);
-	    	   updateheader.setVisibility(View.VISIBLE);
+	    	   //TextView addheader = (TextView) findViewById(R.id.addheader);
+	    	   //TextView updateheader = (TextView) findViewById(R.id.updateheader);
+	    	   //addheader.setVisibility(View.INVISIBLE);
+	    	  // updateheader.setVisibility(View.VISIBLE);
+	    	   
 	       }else{
 	    	   for (int i=0;i < daybuttons.getChildCount(); i++){
 	    		   TextView daybutton = (TextView) daybuttons.getChildAt(i);
