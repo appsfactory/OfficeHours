@@ -47,6 +47,12 @@ public class ScheduleView extends Activity {
         new ChangeHeaderColor().execute();
         new PopulateScheduleTask().execute();
     }
+    
+//    @Override
+//    public void onStop() {
+//    	super.onStop();
+//    	finish();
+//    }
     public void addSchedule(View view) {
 		Intent intent = new Intent(this, CreateScheduleView.class);
 		startActivity(intent);

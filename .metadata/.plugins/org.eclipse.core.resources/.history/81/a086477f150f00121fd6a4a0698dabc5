@@ -1,0 +1,186 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000"
+    android:orientation="horizontal" >
+    <RelativeLayout 
+        android:layout_width="match_parent"
+    	android:layout_height="match_parent"
+    	android:id="@+id/relscreen">
+
+    		<LinearLayout
+    		    android:id="@+id/sidebar"
+    		    android:layout_width="wrap_content"
+    		    android:layout_height="400dp"
+    		    android:layout_alignParentBottom="true"
+    		    android:layout_alignTop="@+id/bar"
+    		    android:orientation="vertical" >
+
+	    		<TextView android:text="@string/eight"
+	    		    		android:id="@+id/eight"
+	    		    		android:textColor="#FFFFFF"
+	    		    		android:textSize="@dimen/timesize"
+	    		    		android:layout_weight = "1"
+	    		    		android:layout_marginLeft="20dp"
+	    		    		android:layout_width = "wrap_content"
+	    		    		android:layout_height="wrap_content"
+	    		    		
+	    		    		/> 
+	    		<TextView android:text="10:00"
+	    		    		android:textColor="#FFFFFF"
+	    		    		android:textSize="@dimen/timesize"
+	    		    		android:layout_weight="1"
+	    		    		android:layout_marginLeft="20dp"
+	    		    		android:layout_width = "wrap_content"
+	    		    		android:layout_height="wrap_content"
+	    		    		/> 
+	    		<TextView android:text="@string/noon"
+	    		    		android:textColor="#FFFFFF"
+	    		    		android:textSize="@dimen/timesize"
+	    		    		android:layout_weight="1"
+	    		    		android:layout_marginLeft="20dp"
+	    		    		android:layout_width = "wrap_content"
+	    		    		android:layout_height="wrap_content"
+	    		    		/> 
+	    		<TextView android:text="14:00"    		    		android:textColor="#FFFFFF"
+	    		    		android:textSize="@dimen/timesize"
+	    		    		android:layout_weight="1"
+	    		    		android:layout_marginLeft="20dp"
+	    		    		android:layout_width = "wrap_content"
+	    		    		android:layout_height="wrap_content"
+	    		    		/> 
+    			<TextView android:text="16:00"
+	    		    		android:textColor="#FFFFFF"
+	    		    		android:textSize="@dimen/timesize"
+	    		    		android:layout_weight="1"
+	    		    		android:layout_marginLeft="20dp"
+	    		    		android:layout_width = "wrap_content"
+	    		    		android:layout_height="wrap_content"
+	    		    		/> 
+
+	    		<TextView
+	    		    android:layout_width="wrap_content"
+	    		    android:layout_height="wrap_content"
+	    		    android:layout_marginLeft="20dp"
+	    		    android:layout_weight="1.04"
+	    		    android:text="@string/eighteen"
+	    		    android:textColor="#FFFFFF"
+	    		    android:textSize="@dimen/timesize" />
+ 
+    		</LinearLayout>
+	    	<View 
+	    	android:id="@+id/bar"
+		    android:background="@drawable/box"
+		    android:layout_width="100dp"
+		    android:layout_height="@dimen/barheight"
+		    android:layout_marginLeft="@dimen/leftMargin"
+		    android:layout_marginTop="@dimen/topMargin"
+		   	/>
+	    	<RelativeLayout
+	    	  android:id="@+id/bluebox"
+	    	 android:background="@drawable/bluebox"
+	    	 android:layout_width="90dp"
+	    	 android:layout_height="80dp"
+	    	 android:layout_marginLeft="@dimen/blueLeftMargin"
+	    	 android:layout_centerVertical = "true"
+	    	 android:clipChildren= "false">
+	    	 <View 
+	    	       android:id="@+id/topscroll"
+	    	       android:layout_height="40dp"
+	    	       android:layout_width="match_parent"
+	    	       android:layout_alignParentTop="true"
+	    	  />
+	    	   <View 
+	    	        android:id="@+id/bottomscroll"
+	    	       android:layout_height="40dp"
+	    	       android:layout_width="match_parent"
+	    	       android:layout_alignParentBottom="true"
+	    	       />
+	    	 </RelativeLayout>
+
+			<TextView
+			    android:id = "@+id/titleday"
+			    android:layout_width="wrap_content"
+			    android:layout_height="20dp"
+			    android:height="20dp"
+			    android:singleLine = "true"
+			    android:layout_above="@id/bar"
+			    android:layout_centerHorizontal="true"
+			    android:textColor="#FFFFFF"
+			    android:textSize="20dp" />
+			
+			     <Button
+	    	     android:layout_width="wrap_content"
+	    	     android:layout_alignParentBottom="true"
+	    	     android:layout_alignParentRight="true"
+	    	     android:layout_marginBottom="10dp"
+	    	     android:layout_marginRight="10dp"
+	    	     android:layout_height="wrap_content"
+	    	     android:text="Save"
+	    	     android:textSize="20dp" 
+	    	     android:onClick="Save"
+	    	     android:background="@drawable/button_blue">	 		
+				</Button>
+			<LinearLayout android:layout_alignParentRight="true"
+			    android:layout_height="@dimen/barheight"
+			    android:layout_width="60dp"
+			    android:orientation ="vertical"
+			    android:layout_marginTop="@dimen/topMargin"
+			    android:clickable="false"
+			   	>		    
+			    <TextView android:text = "M"
+			        android:id="@+id/daybutton"
+			        android:layout_weight = "1"
+			        android:textSize = "@dimen/timesize"
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:gravity="center"
+			        android:onClick="dayTextClick"
+			        android:clickable="true"
+			         android:hint="Monday"
+			        />
+			    <TextView android:text = "T"
+			        android:id="@+id/daybutton"
+			        android:layout_weight = "1"
+			        android:textSize = "@dimen/timesize"
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:gravity="center"
+			        android:onClick="dayTextClick"
+			        android:clickable="true"
+			         android:hint="Tuesday"/>
+			    <TextView android:text = "W"
+			        android:id="@+id/daybutton"
+			        android:layout_weight = "1"
+			        android:textSize = "@dimen/timesize"
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:gravity="center"
+			        android:onClick="dayTextClick"
+			        android:clickable="true"
+			        android:hint="Wednesday"/>
+			    <TextView android:text = "T"
+			        android:id="@+id/daybutton"
+			        android:layout_weight = "1"
+			        android:textSize = "@dimen/timesize"
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:gravity="center"
+			        android:onClick="dayTextClick"
+			        android:clickable="true"
+			         android:hint="Thursday"/>
+			    <TextView android:text = "F"
+			        android:id="@+id/daybutton"
+			        android:layout_weight = "1"
+			        android:textSize = "@dimen/timesize"
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:gravity="center"
+			        android:onClick="dayTextClick"
+			        android:clickable="true"
+			        android:hint="Friday"/>
+			   </LinearLayout>
+    </RelativeLayout>
+    		
+</LinearLayout>

@@ -58,6 +58,11 @@ public class CreateScheduleView extends Activity {
 			return true;
 		}
 	};
+//	@Override
+//    public void onStop() {
+////		super.onStop();
+////    	finish();
+//    }
 	
 	private OnTouchListener bottomTouch = new OnTouchListener() {
 		@Override

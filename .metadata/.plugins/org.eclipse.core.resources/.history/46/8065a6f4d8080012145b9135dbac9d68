@@ -1,9 +1,0 @@
-<resources xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <style name="AppTheme" parent="android:Theme.Black.NoTitleBar" />
-	<style name="ItemBorder" parent="@android:style/Widget">
-	    android:background="#777" 
-	    <item name="android:layout_width">fill_parent</item>
-	    <item name="android:layout_margin">2dp</item>
-	</style>
-</resources>

@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+        
+        <TextView android:background="#aaa" android:layout_width = "1dp" android:layout_height="wrap_content" android:layout_marginTop="0dp" android:layout_marginLeft="39dp" android:text=" "/>
+        
+		<!-- HEADERS -->
+        <LinearLayout
+            android:id="@+id/linearLayout1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true" >
+
+            <TextView
+                android:id="@+id/mon_header"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40dp"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:text="M" 
+                android:background="#000000"/>
+
+            <TextView
+                android:id="@+id/tue_header"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:text="T"
+                android:background="#000000" />
+
+            <TextView
+                android:id="@+id/wed_header"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:text="W"
+                android:background="#000000" />
+
+            <TextView
+                android:id="@+id/thu_header"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:text="T"
+                android:background="#000000" />
+
+            <TextView
+                android:id="@+id/fri_header"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:text="F"
+                 />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="0dp"
+        android:scrollbars="none" >"
+
+		<!--  GRID/BORDERS -->
+        <RelativeLayout
+            android:id="@+id/relativeLayout242"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="0dp" >
+
+
+            
+            <View android:background="#aaa" android:layout_width = "fill_parent" android:layout_height="1dp" android:layout_marginTop="0dp" />
+            <View android:background="#444" android:layout_width = "fill_parent" android:layout_height="1dp" android:layout_marginTop="40dp"/>
+            <View android:background="#444" android:layout_width = "fill_parent" android:layout_height="1dp" android:layout_marginTop="80dp"/>
+            <View android:background="#444" android:layout_width = "fill_parent" android:layout_height="1dp" android:layout_marginTop="120dp"/>
+            <View android:background="#444" android:layout_width = "fill_parent" android:layout_height="1dp" android:layout_marginTop="160dp"/>
+            <View android:background="#444" android:layout_width = "fill_parent" android:layout_height="1dp" android:layout_marginTop="200dp"/>
+            <View android:background="#444" android:layout_width = "fill_parent" android:layout_height="1dp" android:layout_marginTop="240dp"/>
+            <View android:background="#444" android:layout_width = "fill_parent" android:layout_height="1dp" android:layout_marginTop="280dp"/>
+            <View android:background="#444" android:layout_width = "fill_parent" android:layout_height="1dp" android:layout_marginTop="320dp"/>
+            <View android:background="#444" android:layout_width = "fill_parent" android:layout_height="1dp" android:layout_marginTop="360dp"/>
+            <View android:background="#444" android:layout_width = "fill_parent" android:layout_height="1dp" android:layout_marginTop="400dp"/>
+            <View android:background="#aaa" android:layout_width = "fill_parent" android:layout_height="1dp" android:layout_marginTop="440dp"/>
+            <View android:background="#aaa" android:layout_width = "1dp" android:layout_height="441dp" android:layout_marginTop="0dp" android:layout_marginLeft="39dp"/>
+            
+<!-- 
+            <View android:background="#777" android:layout_width = "fill_parent" android:layout_height="1dp" android:layout_marginTop="20dp"/>
+            <View android:background="#777" android:layout_width = "fill_parent" android:layout_height="1dp" android:layout_marginTop="60dp"/>
+            <View android:background="#777" android:layout_width = "fill_parent" android:layout_height="1dp" android:layout_marginTop="100dp"/>
+            <View android:background="#777" android:layout_width = "fill_parent" android:layout_height="1dp" android:layout_marginTop="140dp"/>
+            <View android:background="#777" android:layout_width = "fill_parent" android:layout_height="1dp" android:layout_marginTop="180dp"/>
+            <View android:background="#777" android:layout_width = "fill_parent" android:layout_height="1dp" android:layout_marginTop="220dp"/>
+            <View android:background="#777" android:layout_width = "fill_parent" android:layout_height="1dp" android:layout_marginTop="260dp"/>
+            <View android:background="#777" android:layout_width = "fill_parent" android:layout_height="1dp" android:layout_marginTop="300dp"/>
+            <View android:background="#777" android:layout_width = "fill_parent" android:layout_height="1dp" android:layout_marginTop="340dp"/>
+            <View android:background="#777" android:layout_width = "fill_parent" android:layout_height="1dp" android:layout_marginTop="380dp"/>
+            <View android:background="#777" android:layout_width = "fill_parent" android:layout_height="1dp" android:layout_marginTop="420dp"/> -->
+
+
+            <LinearLayout
+                android:id="@+id/linearLayout2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="0dp" >
+				
+                <!-- SIDEBAR -->
+
+                <RelativeLayout
+                    android:id="@+id/sidebar"
+                    android:layout_width="37dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="1.5dp"
+                    android:layout_marginRight="1.5dp"
+                    android:padding="0dp" >
+
+                    <TextView
+                        android:id="@+id/textView10"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="0dp"
+                        android:gravity="center"
+                        android:text="8am" />
+
+                    <TextView
+                        android:id="@+id/textView10"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="40dp"
+                        android:gravity="center"
+                        android:text="9am" />
+
+                    <TextView
+                        android:id="@+id/textView10"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="80dp"
+                        android:gravity="center"
+                        android:text="10am" />
+
+                    <TextView
+                        android:id="@+id/textView10"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="120dp"
+                        android:gravity="center"
+                        android:text="11am" />
+
+                    <TextView
+                        android:id="@+id/textView10"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="160dp"
+                        android:gravity="center"
+                        android:text="12pm" />
+
+                    <TextView
+                        android:id="@+id/textView10"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="200dp"
+                        android:gravity="center"
+                        android:text="1pm" />
+
+                    <TextView
+                        android:id="@+id/textView10"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="240dp"
+                        android:gravity="center"
+                        android:text="2pm" />
+
+                    <TextView
+                        android:id="@+id/textView10"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="280dp"
+                        android:gravity="center"
+                        android:text="3pm" />
+
+                    <TextView
+                        android:id="@+id/textView10"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="320dp"
+                        android:gravity="center"
+                        android:text="4pm" />
+
+                    <TextView
+                        android:id="@+id/textView10"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="360dp"
+                        android:gravity="center"
+                        android:text="5pm" />
+
+                    <TextView
+                        android:id="@+id/textView10"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="400dp"
+                        android:gravity="center"
+                        android:text="6pm" />                 
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/relativeLayout3"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="14"
+                    android:padding="0dp" >
+
+                    <LinearLayout
+                        android:id="@+id/linearLayout3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentTop="true"
+                        android:padding="0dp" >
+
+                        
+                        <!-- COLUMNS -->
+                        <RelativeLayout
+                            android:id="@+id/moncolumn"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1" >
+							
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/tuecolumn"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1" >
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/wedcolumn"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1" >
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/thucolumn"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1" >
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/fricolumn"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1" >
+
+                        </RelativeLayout>           
+
+                    </LinearLayout>
+                </RelativeLayout>
+            </LinearLayout>
+        </RelativeLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="0dp" 
+        android:layout_marginTop="7.5dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp" >
+        
+        <Button 
+            android:id="@+id/addbutton"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:text="Add" 
+            android:onClick="addSchedule"
+            android:background="@drawable/button_blue" />
+        <Button 
+            android:id="@+id/refreshbutton"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:onClick="refreshSchedule"
+            android:text="Refresh" 
+            android:background="@drawable/button_blue" />
+        
+    </LinearLayout>
+
+</LinearLayout>

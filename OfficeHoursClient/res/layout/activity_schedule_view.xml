@@ -274,13 +274,6 @@
                             android:layout_height="match_parent"
                             android:layout_weight="1" >
 
-                            <Button
-                                android:id="@+id/button1"
-                                android:layout_width="fill_parent"
-                                android:layout_height="180dp"
-                                android:layout_marginTop="480dp"
-                                android:text="Some Event" />
-
                         </RelativeLayout>           
 
                     </LinearLayout>
@@ -296,7 +289,8 @@
         android:padding="0dp" 
         android:layout_marginTop="7.5dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp" >
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="3dp" >
         
         <Button 
             android:id="@+id/addbutton"
@@ -304,14 +298,16 @@
             android:layout_height="fill_parent"
             android:layout_weight="1"
             android:text="Add" 
-            android:onClick="addSchedule"/>
+            android:onClick="addSchedule"
+            android:background="@drawable/button_blue" />
         <Button 
             android:id="@+id/refreshbutton"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="1"
             android:onClick="refreshSchedule"
-            android:text="Refresh" />
+            android:text="Refresh" 
+            android:background="@drawable/button_blue" />
         
     </LinearLayout>
 

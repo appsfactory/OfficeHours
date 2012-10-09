@@ -13,7 +13,9 @@
         android:onClick="toggleSignIn"
         android:textOff="I&apos;m not at the Hub"
         android:textOn="I&apos;m at the Hub"
-        android:textSize="30sp" />
+        android:textSize="23sp"
+        android:textColor="#FFFFFF"
+        android:background="@drawable/button_blue" />
 
     <TextView
         android:id="@+id/textView1"
@@ -29,22 +31,28 @@
         android:id="@+id/button2"
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_alignTop="@+id/button1"
         android:layout_toRightOf="@+id/textView1"
         android:onClick="logOut"
-        android:text="Sign Out" />
+        android:text="Sign Out"
+        android:background="@drawable/button_blue"
+        android:layout_marginBottom="3dp"
+        android:textColor="#FFFFFF" />
 
     <Button
         android:id="@+id/button1"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_toLeftOf="@+id/button2"
         android:onClick="viewSchedule"
-        android:text="@string/schedule_button" />
+        android:text="@string/schedule_button"
+        android:background="@drawable/button_blue"
+        android:layout_marginBottom="3dp"
+        android:textColor="#FFFFFF" />
 
 </RelativeLayout>

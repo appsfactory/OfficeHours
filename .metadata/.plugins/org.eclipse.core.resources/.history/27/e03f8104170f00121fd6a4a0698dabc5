@@ -1,0 +1,54 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <ToggleButton
+        android:id="@+id/toggleButton1"
+        android:layout_width="250dp"
+        android:layout_height="150dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="142dp"
+        android:onClick="toggleSignIn"
+        android:textOff="I&apos;m not at the Hub"
+        android:textOn="I&apos;m at the Hub"
+        android:textSize="23sp"
+        android:textColor="white"
+        android:background="@drawable/button_blue" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="110dp"
+        android:text="Click to toggle presence"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <Button
+        android:id="@+id/button2"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/button1"
+        android:layout_toRightOf="@+id/textView1"
+        android:onClick="logOut"
+        android:text="Sign Out"
+        android:background="@drawable/button_blue" />
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_toLeftOf="@+id/button2"
+        android:onClick="viewSchedule"
+        android:text="@string/schedule_button"
+        android:background="@drawable/button_blue" />
+
+</RelativeLayout>
