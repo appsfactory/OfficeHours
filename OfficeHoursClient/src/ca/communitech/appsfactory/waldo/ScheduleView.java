@@ -150,7 +150,12 @@ public class ScheduleView extends Activity {
 	
 	/**Toasts a generic database error message */
 	private void databaseConnectionErrorMessage() {
-		Utils.errormessage("Error connecting to database. Please try again in a few moments", getBaseContext());
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				Utils.errormessage("Error connecting to database. Please try again in a few moments", getBaseContext());
+			}
+		}).start();
 	}
 
     @Override
@@ -388,8 +393,10 @@ public class ScheduleView extends Activity {
 	 *
 	 */
     private class PopulateScheduleTask extends AsyncTask<Void, Boolean, String> {
+    	
     	private ProgressDialog dialog; //used for the "Loading..." message
-		@Override
+		
+    	@Override
 		protected String doInBackground(Void... params) {
 			publishProgress(true);
 			HttpClient client = new DefaultHttpClient();

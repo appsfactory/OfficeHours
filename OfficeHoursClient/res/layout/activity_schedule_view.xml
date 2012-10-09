@@ -286,17 +286,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="0dp" 
-        android:layout_marginTop="7.5dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_marginBottom="3dp" >
+        >
         
         <Button 
             android:id="@+id/addbutton"
             android:background="@drawable/button_blue"
             android:layout_width="0dp"
-            android:layout_height="fill_parent"
+            android:layout_height="40dp"
+            android:gravity="center"
             android:layout_weight="1"
+            android:layout_marginTop="7.5dp"
             android:layout_marginBottom="2dp"
             android:textColor="#FFF"
             android:text="Add" 
@@ -305,9 +306,11 @@
             android:id="@+id/refreshbutton"
             android:background="@drawable/button_blue"
             android:layout_width="0dp"
-            android:layout_height="fill_parent"
+            android:layout_height="40dp"
+            android:gravity="center"
             android:layout_weight="1"
             android:textColor="#FFF"
+            android:layout_marginTop="7.5dp"
             android:layout_marginBottom="2dp"
             android:onClick="refreshSchedule"
             android:text="Refresh" />

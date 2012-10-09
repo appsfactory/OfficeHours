@@ -183,6 +183,7 @@ if ($action == "updateSchedule"){
 				break;
 		} elseif (strtotime($startingTime) > strtotime($scheduleResult[$i]['startingTime']) && strtotime($startingTime) < strtotime($scheduleResult[$i]['finishingTime']) && $referenceId != $scheduleResult[$i]['referenceId']) {
 				$overlap=true;
+				
 				$query = "UPDATE userschedules
 				SET finishingTime = '$finishingTime'
 				WHERE userName = '$userName'
@@ -225,7 +226,17 @@ if ($action == "updateSchedule"){
 		}
 	}
 	///////\\\\\\\OVERLAP CHECKER///////////\\\\\\\\\\\\\\\\\\\\\
-	
+	if ($overlap == true && $referenceId != "") {
+		$deleteQuery = "DELETE FROM userschedules
+			WHERE organizationId = '$organizationId'
+			AND branchId = '$branchId'
+			AND locationCode = '$locationCode'
+			AND userName = '$userName'
+			AND referenceId = '$referenceId'
+			AND date = '$selectedDate';";
+		$executeQuery = $db->prepare($deleteQuery);
+		$executeQuery->execute() or exit("Error: DELETE  query failed.");
+	}
 	if (!$overlap){
 		$checkQuery = "SELECT * FROM userschedules
 		WHERE userName = '$userName'

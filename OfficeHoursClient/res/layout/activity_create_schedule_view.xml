@@ -8,7 +8,13 @@
         android:layout_width="match_parent"
     	android:layout_height="match_parent"
     	android:id="@+id/relscreen">
-
+		<TextView android:text="Add"
+		    android:textColor="#222"
+		    android:textSize="150dp"
+		    android:layout_marginLeft="50dp"
+		    android:layout_height="wrap_content"
+		    android:layout_width="wrap_content"/>
+		    
     		<LinearLayout
     		    android:id="@+id/sidebar"
     		    android:layout_width="wrap_content"
@@ -70,7 +76,7 @@
 	    		    android:layout_width="wrap_content"
 	    		    android:layout_height="wrap_content"
 	    		    android:layout_marginLeft="20dp"
-	    		    android:layout_weight="1.22"
+	    		    android:layout_weight="1.63"
 	    		    android:text="@string/eighteen"
 	    		    android:textColor="#FFFFFF"
 	    		    android:textSize="@dimen/timesize" />
@@ -106,7 +112,7 @@
 	    	       />
 	    	 </RelativeLayout>
 
-			<TextView
+				<TextView
 			    android:id = "@+id/titleday"
 			    android:layout_width="wrap_content"
 			    android:layout_height="20dp"
@@ -116,29 +122,41 @@
 			    android:layout_centerHorizontal="true"
 			    android:textColor="#FFFFFF"
 			    android:textSize="20dp" />
-			
-			     <Button
-	    	     android:layout_width="wrap_content"
+				<RelativeLayout android:id = "@+id/savecancel"
+				    android:layout_width = "wrap_content"
+				    android:layout_height = "wrap_content">			     
+				 <Button
+	    	     android:layout_width="80dp"
+	    	     android:id="@+id/savebutton"
 	    	     android:layout_alignParentBottom="true"
 	    	     android:layout_alignParentRight="true"
 	    	     android:layout_marginBottom="10dp"
 	    	     android:layout_marginRight="10dp"
-	    	     android:layout_height="wrap_content"
+	    	     android:layout_height="50dp"
 	    	     android:text="Save"
+	    	     android:gravity="center"
+	    	     android:background="@drawable/button_blue"
 	    	     android:textSize="20dp" 
+	    	     android:textColor="#FFF"
 	    	     android:onClick="Save">	 		
 				</Button>
 				<Button
-	    	     android:layout_width="wrap_content"
+				 android:id="@+id/cancelbutton"
+	    	     android:layout_width="100dp"
 	    	     android:layout_alignParentBottom="true"
 	    	     android:layout_alignParentLeft="true"
 	    	     android:layout_marginBottom="10dp"
 	    	     android:layout_marginLeft="10dp"
-	    	     android:layout_height="wrap_content"
+	    	     android:layout_height="50dp"
 	    	     android:text="Cancel"
+	    	     android:gravity="center"
+	    	     android:textColor="#FFF"
+	    	     android:background="@drawable/button_blue"
 	    	     android:textSize="20dp" 
 	    	     android:onClick="Cancel">	 		
 				</Button>
+				</RelativeLayout>
+				
 				
 			<LinearLayout android:layout_alignParentRight="true"
 			    android:layout_height="@dimen/barheight"
@@ -201,18 +219,8 @@
 			        android:hint="Friday"/>
 			   </LinearLayout>
 
-			<Button
-			    android:layout_width="wrap_content"
-			    android:layout_height="30dp"
-			    android:layout_alignParentBottom="true"
-			    android:layout_alignParentRight="true"
-			    android:background="@drawable/button_blue"
-			    android:onClick="Save"
-			    android:text="Save"
-			    android:textSize="20dp"
-			    android:layout_marginBottom="3dp"
-			    android:layout_marginRight="3dp"
-			    android:textColor="#FFFFFF" />
+			
+			   
 
     </RelativeLayout>
     		

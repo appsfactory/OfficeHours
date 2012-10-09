@@ -1,6 +1,10 @@
 package ca.communitech.appsfactory.waldo;
 
 import android.content.Context;
+import android.graphics.Typeface;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class Utils {
@@ -15,5 +19,12 @@ public class Utils {
 		Toast toastiness = Toast.makeText(context, errormessage, duration);
 		currenttoast = toastiness;
 		toastiness.show();
+	}
+	public static void setFont(View view, Typeface metro) {
+		ViewGroup v = (ViewGroup) view;
+		for (int i=0; i < v.getChildCount(); i++){
+    	   TextView text = (TextView) v.getChildAt(i);
+    		text.setTypeface(metro, Typeface.NORMAL);
+       }
 	}
 }
