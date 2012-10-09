@@ -561,7 +561,7 @@ public class ScheduleView extends Activity {
 			Date endTime = df.parse(endTime_s);
 			
 				//do math and set params!
-			double topmargin = startTime.getTime() - 28800000.0; //8 AM in MS
+			double topmargin = startTime.getTime() - 46800000.0; //8 AM in MS
 			topmargin *= Constants.MS_TO_DP;
 			topmargin += 3;
 			topmargin *= (getResources().getDisplayMetrics().density);

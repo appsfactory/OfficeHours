@@ -562,10 +562,16 @@ public class ScheduleView extends Activity {
 			
 				//do math and set params!
 			double topmargin = startTime.getTime() - 28800000.0; //8 AM in MS
+			Log.i("TOP MARGIN: 1", Double.toString(topmargin));
 			topmargin *= Constants.MS_TO_DP;
+			Log.i("TOP MARGIN: 2", Double.toString(topmargin));
 			topmargin += 3;
+			Log.i("TOP MARGIN: 3", Double.toString(topmargin));
 			topmargin *= (getResources().getDisplayMetrics().density);
+			Log.i("TOP MARGIN: 4", Double.toString(topmargin));
 			topmargin += 0.5f;
+
+			Log.i("TOP MARGIN: 5", Double.toString(topmargin));
 			
 			double height = endTime.getTime() - startTime.getTime() + 0.0;
 			height *= Constants.MS_TO_DP;
