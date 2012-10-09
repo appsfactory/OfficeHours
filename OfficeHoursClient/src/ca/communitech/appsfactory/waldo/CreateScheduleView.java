@@ -52,9 +52,6 @@ public class CreateScheduleView extends Activity {
 	       View bottomscroll = findViewById(R.id.bottomscroll);
 	       bottomscroll.setOnTouchListener(bottomTouch);
 	       
-	       //startend = new String[2];
-	       //startend[0] = "";
-	       
 	       daySelected = new HashMap<String, String>(5);
 	       daySelected.put("Monday", "false");
 	       daySelected.put("Tuesday", "false");
@@ -70,9 +67,11 @@ public class CreateScheduleView extends Activity {
 	    		   TextView daybutton = (TextView) daybuttons.getChildAt(i);
 	    		   daybutton.setClickable(false);
 	    		   //daybutton.setBackgroundColor(Color.argb(255, 200, 55, 55));
-	    		   if (String.valueOf(daybutton.getHint()) == "Monday") {
-	    			   daybutton.setBackgroundColor(Color.argb(255, 200, 55, 55));
-	    			   Log.i("soop", String.valueOf(daybutton.getHint()));
+    			   Log.i("soop", String.valueOf(daybutton.getHint()));
+
+	    		   if (String.valueOf(daybutton.getHint()).equals(startend[3])) {
+	    			   daybutton.setBackgroundColor(Color.argb(255, 0, 102, 200));
+	    			   Log.i("fired", "you heard me");
 	    		   }
 	    	   }
 	       }else{
@@ -97,6 +96,7 @@ public class CreateScheduleView extends Activity {
 	       
 	       startingTime = "12:00";
 	       finishingTime = "14:00";
+	       
 	       daySelected = new HashMap<String, String>(5);
 	       daySelected.put("Monday", "false");
 	       daySelected.put("Tuesday", "false");
@@ -322,10 +322,11 @@ public class CreateScheduleView extends Activity {
 	    		databaseConnectionErrorMessage();
 	    		return null;
 	    	}
+		}
 	      
 
-		
-		/*@Override
+		/*
+		@Override
 		protected void onPostExecute(HttpResponse response) {
 				try {
 					BufferedReader reader = new BufferedReader(new InputStreamReader(response.getEntity().getContent(), "UTF-8"));
@@ -344,9 +345,10 @@ public class CreateScheduleView extends Activity {
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					Log.i("CATCH HIT: ", e.getMessage());
-				}*/
-		}
+				}
+		}*/
     }
+
     
     private void updateBlue (RelativeLayout blue){
     	String start = startend[0];

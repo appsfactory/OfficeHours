@@ -3,7 +3,6 @@ package ca.communitech.appsfactory.waldo;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -32,7 +31,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
-import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -44,9 +42,9 @@ public class ScheduleView extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schedule_view);
-		Utils.errormessage("Loading...", getBaseContext());
-        new ChangeHeaderColor().execute();
-        new PopulateScheduleTask().execute();
+		//Utils.errormessage("Loading...", getBaseContext());
+        //new ChangeHeaderColor().execute();
+        //new PopulateScheduleTask().execute();
         LinearLayout lin = (LinearLayout) findViewById(R.id.linearLayout3);
         for (int i = 0; i < lin.getChildCount(); i++){
         	lin.getChildAt(i).setOnClickListener(new View.OnClickListener() {
@@ -367,7 +365,7 @@ public class ScheduleView extends Activity {
 		
 		
     private class PopulateScheduleTask extends AsyncTask<Void, Boolean, String> {
-
+    	ProgressDialog dialog;
 		@Override
 		protected String doInBackground(Void... params) {
 			publishProgress(true);
@@ -377,7 +375,6 @@ public class ScheduleView extends Activity {
 	    	SharedPreferences auth_stuff = getSharedPreferences(Constants.SHARED_PREFS_FILE, MODE_PRIVATE);
 	        String string = auth_stuff.getString("authstring", " " + Constants.AUTH_SPLITTER + " ");
 	        string = string.split(Constants.AUTH_SPLITTER)[0];
-	        publishProgress();
 	    	try {
 	        	request.put("action", "showSchedule");
 	        	request.put("branchId", Constants.BRANCH_ID);
@@ -407,18 +404,21 @@ public class ScheduleView extends Activity {
 	    		return null;
 	    	}
 		}
-		protected void onProgressUpdate(Boolean bool) {
-	         if(bool) {
-	        	 ProgressDialog dialog = ProgressDialog.show(ScheduleView.this, "", 
+		@Override
+		protected void onProgressUpdate(Boolean... bool) {
+			super.onProgressUpdate(bool);
+	         if(bool[0]) {
+	        	 dialog = ProgressDialog.show(ScheduleView.this, "", 
 	                        "Loading Schedule. Please wait...", true);
 	        	 dialog.show();
 	        	 return;
 	         }else {
-	        	
+	        	 dialog.cancel();
 	         }
 	     }
-		/*@Override
-		protected void onProgressUpdate(Integer...values){
+		/*
+		@Override
+		protected void onProgressUpdate(Boolean...values){
 			super.onProgressUpdate(values);
 			Utils.errormessage("Loading...", getBaseContext());
 		}*/
@@ -440,7 +440,7 @@ public class ScheduleView extends Activity {
 					}
 					else{
 						//Iterate through the array of JSONObjects, populate for each
-						Utils.errormessage("Load Complete!", getBaseContext());
+						//Utils.errormessage("Load Complete!", getBaseContext());
 						for(int i=0; i < jsonarray.length(); i++){
 							String startTime_s = jsonarray.getJSONObject(i).getString("startTime");
 							String endTime_s = jsonarray.getJSONObject(i).getString("endTime");

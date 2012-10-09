@@ -178,10 +178,10 @@ if ($action == "updateSchedule"){
 	$executeQuery->execute() or exit("Error: INSERT query failed.");
 	$scheduleResult = $executeQuery->fetchAll(PDO::FETCH_BOTH);
 	for ($i = 0; $i < count($scheduleResult); $i++) {
-		if (strtotime($startingTime) > strtotime($scheduleResult[$i]['startingTime']) && strtotime($finishingTime) < strtotime($scheduleResult[$i]['finishingTime'])){
+		if (strtotime($startingTime) > strtotime($scheduleResult[$i]['startingTime']) && strtotime($finishingTime) < strtotime($scheduleResult[$i]['finishingTime']) && $referenceId != $scheduleResult[$i]['referenceId']){
 				$overlap = true;
 				break;
-		} elseif (strtotime($startingTime) > strtotime($scheduleResult[$i]['startingTime']) && strtotime($startingTime) < strtotime($scheduleResult[$i]['finishingTime'])) {
+		} elseif (strtotime($startingTime) > strtotime($scheduleResult[$i]['startingTime']) && strtotime($startingTime) < strtotime($scheduleResult[$i]['finishingTime']) && $referenceId != $scheduleResult[$i]['referenceId']) {
 				$overlap=true;
 				$query = "UPDATE userschedules
 				SET finishingTime = '$finishingTime'
@@ -194,7 +194,7 @@ if ($action == "updateSchedule"){
 				$executeQuery = $db->prepare($query);
 				$executeQuery->execute() or exit("Error: INSERT query failed.");
 				break;
-		} else if (strtotime($finishingTime) < strtotime($scheduleResult[$i]['finishingTime']) && strtotime($finishingTime) > strtotime($scheduleResult[$i]['startingTime'])) {
+		} else if (strtotime($finishingTime) < strtotime($scheduleResult[$i]['finishingTime']) && strtotime($finishingTime) > strtotime($scheduleResult[$i]['startingTime']) && $referenceId != $scheduleResult[$i]['referenceId']) {
 				$overlap=true;
 				$query = "UPDATE userschedules
 				SET startingTime = '$startingTime'
@@ -207,7 +207,7 @@ if ($action == "updateSchedule"){
 				$executeQuery = $db->prepare($query);
 				$executeQuery->execute() or exit("Error: INSERT query failed.");
 				break;
-		} else if (strtotime($finishingTime) > strtotime($scheduleResult[$i]['finishingTime']) && strtotime($startingTime) < strtotime($scheduleResult[$i]['startingTime'])){
+		} else if (strtotime($finishingTime) > strtotime($scheduleResult[$i]['finishingTime']) && strtotime($startingTime) < strtotime($scheduleResult[$i]['startingTime']) && $referenceId != $scheduleResult[$i]['referenceId']){
 				$overlap=true;
 				$query = "UPDATE userschedules
 				SET startingTime = '$startingTime',
