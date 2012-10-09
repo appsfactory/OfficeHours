@@ -33,8 +33,7 @@
         </activity>
         <activity
             android:name=".SignInChecker"
-            android:label="@string/title_activity_sign_in_checker"
-            android:screenOrientation="portrait" >
+            android:label="@string/title_activity_sign_in_checker" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -43,16 +42,14 @@
         </activity>
         <activity
             android:name=".ScheduleView"
-            android:label="@string/title_activity_schedule_view"
-            android:screenOrientation="portrait" >
+            android:label="@string/title_activity_schedule_view" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="ca.communitech.appsfactory.waldo.SignInChecker" />
         </activity>
         <activity
             android:name=".CreateScheduleView"
-            android:label="@string/title_activity_create_schedule_view"
-            android:screenOrientation="portrait" >
+            android:label="@string/title_activity_create_schedule_view" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="ca.communitech.appsfactory.waldo.ScheduleView" />

@@ -533,7 +533,7 @@ public class ScheduleView extends Activity {
 		 * @param referenceId
 		 * @param day
 		 * @throws ParseException
-		 */ 
+		 */
 		private void addScheduleEvent(final String startTime_s, final String endTime_s,
 				int columnId, final String referenceId, final String day) throws ParseException {
 			ViewGroup col = (ViewGroup) findViewById(columnId);        
@@ -561,11 +561,17 @@ public class ScheduleView extends Activity {
 			Date endTime = df.parse(endTime_s);
 			
 				//do math and set params!
-			double topmargin = startTime.getTime() - 28800000.0; //8 AM in MS
+			double topmargin = startTime.getTime() - 4680000.0; //8 AM in MS
+			Log.i("TOP MARGIN: 1", Double.toString(topmargin));
 			topmargin *= Constants.MS_TO_DP;
+			Log.i("TOP MARGIN: 2", Double.toString(topmargin));
 			topmargin += 3;
+			Log.i("TOP MARGIN: 3", Double.toString(topmargin));
 			topmargin *= (getResources().getDisplayMetrics().density);
+			Log.i("TOP MARGIN: 4", Double.toString(topmargin));
 			topmargin += 0.5f;
+
+			Log.i("TOP MARGIN: 5", Double.toString(topmargin));
 			
 			double height = endTime.getTime() - startTime.getTime() + 0.0;
 			height *= Constants.MS_TO_DP;
