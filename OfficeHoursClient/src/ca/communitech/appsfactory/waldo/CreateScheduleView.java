@@ -19,10 +19,12 @@ import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,6 +39,100 @@ public class CreateScheduleView extends Activity {
 	private String finishingTime;
 	private Map<String, String> daySelected; 
 	private Typeface metro;
+	private String[] startend;
+	private Boolean saving;
+	
+	 @Override
+	    public void onCreate(Bundle savedInstanceState) {
+	        super.onCreate(savedInstanceState);
+	        setContentView(R.layout.activity_create_schedule_view);
+	       
+	        View topscroll = findViewById(R.id.topscroll);
+	       topscroll.setOnTouchListener(topTouch);
+	       View bottomscroll = findViewById(R.id.bottomscroll);
+	       bottomscroll.setOnTouchListener(bottomTouch);
+	       
+	       //startend = new String[2];
+	       //startend[0] = "";
+	       
+	       daySelected = new HashMap<String, String>(5);
+	       daySelected.put("Monday", "false");
+	       daySelected.put("Tuesday", "false");
+	       daySelected.put("Wednesday", "false");
+	       daySelected.put("Thursday", "false");
+	       daySelected.put("Friday", "false");
+	       
+	       String[] intentextra = this.getIntent().getStringArrayExtra("ca.communitech.appsfactory.waldo.startEnd");
+    	   LinearLayout daybuttons = (LinearLayout) findViewById(R.id.daybuttons);
+	       if (intentextra != null) {
+	    	   startend = intentextra;
+	    	   for (int i=0;i < daybuttons.getChildCount(); i++){
+	    		   TextView daybutton = (TextView) daybuttons.getChildAt(i);
+	    		   daybutton.setClickable(false);
+	    		   //daybutton.setBackgroundColor(Color.argb(255, 200, 55, 55));
+	    		   if (String.valueOf(daybutton.getHint()) == "Monday") {
+	    			   daybutton.setBackgroundColor(Color.argb(255, 200, 55, 55));
+	    			   Log.i("soop", String.valueOf(daybutton.getHint()));
+	    		   }
+	    	   }
+	       }else{
+	    	   for (int i=0;i < daybuttons.getChildCount(); i++){
+	    		   TextView daybutton = (TextView) daybuttons.getChildAt(i);
+	    		   daybutton.setClickable(true);
+	    	   }
+	    	   startend = new String[4];
+	    	   startend[0] = "f";
+	    	   startend[1] = "false";
+	    	   startend[2] = "false";
+	    	   startend[3] = "false";
+	       }
+	       
+	       DisplayMetrics displaymetrics = new DisplayMetrics();
+	       getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
+	      
+	       height = displaymetrics.heightPixels;
+	       width = displaymetrics.widthPixels;
+	       screenDensity = displaymetrics.densityDpi;
+	       DptoPixel = screenDensity/160;
+	       
+	       startingTime = "12:00";
+	       finishingTime = "14:00";
+	       daySelected = new HashMap<String, String>(5);
+	       daySelected.put("Monday", "false");
+	       daySelected.put("Tuesday", "false");
+	       daySelected.put("Wednesday", "false");
+	       daySelected.put("Thursday", "false");
+	       daySelected.put("Friday", "false");
+	      
+	       metro = Typeface.createFromAsset(getAssets(), "Segoe UI.ttf");
+	       TextView daytext = (TextView) findViewById(R.id.daybutton);
+	       daytext.setTypeface(metro, Typeface.NORMAL);
+	       
+	       saving = false;
+
+	     
+	    }
+	 	@Override
+	 	public void onWindowFocusChanged(boolean hasFocus) {
+	 		super.onWindowFocusChanged(hasFocus);
+	 		RelativeLayout blue = (RelativeLayout) findViewById(R.id.bluebox);
+	 		if (startend[0] != "f" && saving == false){
+	    	   updateBlue(blue);
+	 		}
+	 		
+	 	}
+	    @Override
+	    public void onStop(){
+	    	super.onStop();
+	    	finish();
+	    }
+
+	    @Override
+	    public boolean onCreateOptionsMenu(Menu menu) {
+	        getMenuInflater().inflate(R.menu.activity_create_schedule_view, menu);
+	        return true;
+	    }
+	
 	
 	private OnTouchListener topTouch = new OnTouchListener() {
 		@Override
@@ -45,7 +141,7 @@ public class CreateScheduleView extends Activity {
 			View blue = findViewById(R.id.bluebox);
 			RelativeLayout relscreen = (RelativeLayout) findViewById(R.id.relscreen);
 			
-			int Y = (int) event.getY() + blue.getTop();
+			int Y = (int) event.getY() + blue.getTop() - 15;
 			
 			if (Y < blue.getBottom() - dp(30) && Y > bar.getTop()){
 				RelativeLayout.LayoutParams parms=new RelativeLayout.LayoutParams(blue.getWidth(),blue.getHeight());
@@ -66,7 +162,7 @@ public class CreateScheduleView extends Activity {
 				View blue = (View) v.getParent();
 				RelativeLayout relscreen = (RelativeLayout) findViewById(R.id.relscreen);
 				
-				int Y = (int) event.getY() + blue.getBottom();
+				int Y = (int) event.getY() + blue.getBottom() - 45;
 
 				if (Y - blue.getTop() > dp(30) && Y < bar.getBottom()){
 					RelativeLayout.LayoutParams parms=new RelativeLayout.LayoutParams(blue.getWidth(),blue.getHeight());
@@ -82,57 +178,37 @@ public class CreateScheduleView extends Activity {
     
 	
 	
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_schedule_view);
-       
-        View topscroll = findViewById(R.id.topscroll);
-       topscroll.setOnTouchListener(topTouch);
-       View bottomscroll = findViewById(R.id.bottomscroll);
-       bottomscroll.setOnTouchListener(bottomTouch);
-      
-       DisplayMetrics displaymetrics = new DisplayMetrics();
-       getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
-       height = displaymetrics.heightPixels;
-       width = displaymetrics.widthPixels;
-       screenDensity = displaymetrics.densityDpi;
-       DptoPixel = screenDensity/160;
-       startingTime = "12:00";
-       finishingTime = "14:00";
-       daySelected = new HashMap<String, String>(5);
-       daySelected.put("Monday", "false");
-       daySelected.put("Tuesday", "false");
-       daySelected.put("Wednesday", "false");
-       daySelected.put("Thursday", "false");
-       daySelected.put("Friday", "false");
-       metro = Typeface.createFromAsset(getAssets(), "Segoe UI.ttf");
-       TextView daytext = (TextView) findViewById(R.id.daybutton);
-       daytext.setTypeface(metro, Typeface.NORMAL);
-
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.activity_create_schedule_view, menu);
-        return true;
-    }
+   
+    
     public void Save(View view){
-	 for ( String key : daySelected.keySet() ) {
+    	boolean dayChosen = false;
+    	if (startend[3] != "false"){
+    		daySelected.put(startend[3], "true");
+    	}
+    	for ( String key : daySelected.keySet() ) {
         	if (daySelected.get(key) == "true") {
         		new SaveScheduleTask().execute(key);
+        		dayChosen = true;
         	}
-	 }
-    	Intent intent = new Intent(this, ScheduleView.class);
-    	startActivity(intent);
-    	//ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(20,50);
-    	//view.setLayoutParams(params);
-    	//Intent intent = new Intent(this, DisplayMessageActivity.class);
-    	//EditText text = (EditText) findViewById(R.id.edit_message);
-    	//String message = text.getText().toString();
-    	//intent.putExtra("com.communitech.testapp.message", message);
-    	//startActivity(intent);
+    	}
+		if (!dayChosen) {
+			Utils.errormessage("You must select day(s) (on the right) to add schedule to!", getApplicationContext());
+			 
+		} else {
+			saving = true;
+	    	Intent intent = new Intent(this, ScheduleView.class);
+	    	intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+	    	startActivity(intent);
+		}
     }
+    public void Cancel (View v){
+    	Intent intent = new Intent(this, ScheduleView.class);
+    	intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+    	startActivity(intent);
+    }
+    
+    
+    
     public void dayTextClick(View view){
     	
     	TextView text = (TextView) view;
@@ -146,8 +222,15 @@ public class CreateScheduleView extends Activity {
     	}
     }
     
+    
+    
     private void helperText(RelativeLayout view, int Y, int width, String location){
-    	View rhelper = findViewById(555);
+    	View rhelper;
+    	if (location == "top") {
+    		rhelper = findViewById(555);
+    	} else {
+    		rhelper = findViewById(556);
+    	}
     	View bar = findViewById(R.id.bar);
     	view.removeView(rhelper);
     	TextView helper = new TextView(getBaseContext());
@@ -169,11 +252,15 @@ public class CreateScheduleView extends Activity {
 			}
 		}
     	helper.setText(String.valueOf(H) + ":" + Mstring);
-		helper.setTextSize(bar.getWidth() / 5);
-		helper.setId(555);
+		helper.setTextSize(bar.getWidth() / 6);
+		if (location == "top"){
+			helper.setId(555);
+		} else {
+			helper.setId(556);
+		}
 		helper.setTypeface(metro, Typeface.NORMAL);
 		RelativeLayout.LayoutParams parms = new RelativeLayout.LayoutParams(width, dp(70));
-			parms.topMargin = Y - dp(50);
+			parms.topMargin = Y - dp(10);
 			parms.leftMargin = bar.getLeft() + bar.getWidth() + dp(5);
 			parms.width = RelativeLayout.LayoutParams.WRAP_CONTENT;
 		helper.setLayoutParams(parms);
@@ -185,6 +272,8 @@ public class CreateScheduleView extends Activity {
 		}
     }
     
+    
+    
     private void databaseConnectionErrorMessage() {
 		Context context = getApplicationContext();
 		CharSequence errormessage = "Error connecting to database. Please try again in a few moments.";
@@ -194,6 +283,7 @@ public class CreateScheduleView extends Activity {
 		Toast toastiness = Toast.makeText(context, errormessage, duration);
 		toastiness.show();
 	}
+    
     private class SaveScheduleTask extends AsyncTask<String, Integer, HttpResponse> {
 
 		@Override
@@ -213,6 +303,9 @@ public class CreateScheduleView extends Activity {
 	        	request.put("startingTime", startingTime);
 	        	request.put("finishingTime", finishingTime);
 	        	request.put("selectedDate", params[0]);
+	        	if (startend[2] != "false" ) {
+	        	request.put("referenceId", startend[2]);
+	        	}
 	        	StringEntity data_string = new StringEntity(request.toString());
 	    		post.setEntity(data_string);
 	    		post.setHeader("dataType", "json");
@@ -254,6 +347,27 @@ public class CreateScheduleView extends Activity {
 				}*/
 		}
     }
+    
+    private void updateBlue (RelativeLayout blue){
+    	String start = startend[0];
+    	String end = startend[1];
+    	View bar = findViewById(R.id.bar);
+    	int H=Integer.parseInt(start.substring(0, 2));
+    	int M=Integer.parseInt(start.substring(3,5));
+		int top= (bar.getHeight()/40)*((M/15 + 1 + 4*(H-7)));
+    	H=Integer.parseInt(end.substring(0, 2));
+    	M=Integer.parseInt(end.substring(3,5)); 
+    	int bottom= bar.getHeight()/40*(M/15 + 1 + 4*(H-7));
+    	RelativeLayout relscreen = (RelativeLayout) findViewById(R.id.relscreen);
+    	RelativeLayout.LayoutParams parms=new RelativeLayout.LayoutParams(blue.getWidth(),blue.getHeight());
+			parms.topMargin = (int) top;
+			parms.leftMargin = blue.getLeft();
+			parms.height = (int) bottom - (int) top;
+		blue.setLayoutParams(parms);
+		helperText(relscreen, (int) top, blue.getWidth(), "top");
+    	helperText(relscreen, (int) bottom, blue.getWidth(), "bottom");
+	}
+    
     private int dp(int dp){
     	return dp * DptoPixel;
     }

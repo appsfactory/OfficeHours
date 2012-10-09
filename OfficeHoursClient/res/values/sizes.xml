@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
     <resources>
-        <dimen name="timesize">15dp</dimen>
+        <dimen name="timesize">18dp</dimen>
         <dimen name="topMargin">40dp</dimen>
         <dimen name="leftMargin">80dp</dimen>
         <dimen name="blueLeftMargin">85dp</dimen>

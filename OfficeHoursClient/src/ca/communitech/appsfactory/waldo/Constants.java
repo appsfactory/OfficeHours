@@ -1,7 +1,7 @@
 package ca.communitech.appsfactory.waldo;
 
 public class Constants {
-	public static final String POST_URL = "http://10.172.16.65:4567/officehoursserver/API.php";
+	public static final String POST_URL = "http://10.172.69.85:4567/officehoursserver/API.php";
 	public static final String ACCESS_CODE = "adam";
 	public static final String ORGANIZATION_NAME = "adam";
 	public static final String ORGANIZATION_ID = "1";
