@@ -533,7 +533,7 @@ public class ScheduleView extends Activity {
 		 * @param referenceId
 		 * @param day
 		 * @throws ParseException
-		 */
+		 */ 
 		private void addScheduleEvent(final String startTime_s, final String endTime_s,
 				int columnId, final String referenceId, final String day) throws ParseException {
 			ViewGroup col = (ViewGroup) findViewById(columnId);        

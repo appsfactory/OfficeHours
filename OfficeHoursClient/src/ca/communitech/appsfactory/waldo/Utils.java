@@ -20,11 +20,12 @@ public class Utils {
 		currenttoast = toastiness;
 		toastiness.show();
 	}
-	public static void setFont(View view, Typeface metro) {
+	public static void setFont(ViewGroup view, Typeface font) {
 		ViewGroup v = (ViewGroup) view;
 		for (int i=0; i < v.getChildCount(); i++){
     	   TextView text = (TextView) v.getChildAt(i);
-    		text.setTypeface(metro, Typeface.NORMAL);
+    		text.setTypeface(font, Typeface.NORMAL);
        }
 	}
+	
 }
