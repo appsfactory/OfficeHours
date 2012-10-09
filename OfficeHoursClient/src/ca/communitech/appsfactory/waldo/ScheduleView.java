@@ -3,7 +3,6 @@ package ca.communitech.appsfactory.waldo;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -18,7 +17,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
-import android.R;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -33,7 +31,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
-import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -45,9 +42,12 @@ public class ScheduleView extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schedule_view);
-		Utils.errormessage("Loading...", getBaseContext());
+        //Add Content to Schedule
         new ChangeHeaderColor().execute();
         new PopulateScheduleTask().execute();
+        
+        //Add the deselection feature to each column
+        //DOES THIS EVEN WORK???? -> todo = make this work in xml????!?!?!?!??!?!?!11?1//?1?!?!
         LinearLayout lin = (LinearLayout) findViewById(R.id.linearLayout3);
         for (int i = 0; i < lin.getChildCount(); i++){
         	lin.getChildAt(i).setOnClickListener(new View.OnClickListener() {
@@ -59,7 +59,7 @@ public class ScheduleView extends Activity {
         }
     }
 
-
+    //called when the add button is clickified
     public void addSchedule(View view) {
 		Intent intent = new Intent(this, CreateScheduleView.class);
 		startActivity(intent);
@@ -147,13 +147,6 @@ public class ScheduleView extends Activity {
 	
 	/**Toasts a generic database error message */
 	private void databaseConnectionErrorMessage() {
-		/*Context context = getApplicationContext();
-		CharSequence errormessage = "Error connecting to database. Please try again in a few moments.";
-		int duration = Toast.LENGTH_SHORT;
-		
-		//return that user messed up
-		Toast toastiness = Toast.makeText(context, errormessage, duration);
-		toastiness.show();*/
 		Utils.errormessage("Error connecting to database. Please try again in a few moments", getBaseContext());
 	}
 
@@ -162,14 +155,18 @@ public class ScheduleView extends Activity {
         getMenuInflater().inflate(R.menu.activity_schedule_view, menu);
         return true;
     }
+    
+    /**Extends AsyncTask to change the header color based on current day (serverside) */
     private class ChangeHeaderColor extends AsyncTask<Void, Integer, HttpResponse> {
 
 		@Override
+		/**Gets and returns the date in a separate thread*/
 		protected HttpResponse doInBackground(Void... params) {
 			return getDate();
 		}
 		
 		@Override
+		/**Disseminate the HttpResponse from getdate and change the header accordingly*/ 
 		protected void onPostExecute(HttpResponse response) {
 			try {
 				BufferedReader reader = new BufferedReader(new InputStreamReader(response.getEntity().getContent(), "UTF-8"));
@@ -177,6 +174,7 @@ public class ScheduleView extends Activity {
 				JSONTokener tokener = new JSONTokener(json);
 				JSONObject jsonobject = new JSONObject(tokener);
 				TextView header;
+				//Change header color on switch of current day
 				switch (Constants.DAYS.valueOf(jsonobject.getString("weekday"))) {
 				case Monday:
 					header = (TextView) findViewById(R.id.mon_header);
@@ -222,8 +220,8 @@ public class ScheduleView extends Activity {
     
     }
     
+    /**The onclick of each column, used to select and deselect events from the update/delete activity*/
     private void onColumnClick(final View view, final String start, final String end) {
-    
     	Button addbutton = (Button) findViewById(R.id.addbutton);
     	Button refreshbutton = (Button) findViewById(R.id.refreshbutton);   	
     	LinearLayout rl = (LinearLayout) findViewById(R.id.linearLayout3);
@@ -231,6 +229,7 @@ public class ScheduleView extends Activity {
     		onBlankClick(view);
     		return;
     	} else {
+    		//set the id of each schedule to the most metal of numbers and sets the background/border color to the default
 	    	for (int i=0; i < rl.getChildCount(); i++){
 	    		RelativeLayout col = (RelativeLayout) rl.getChildAt(i);
 	    		for (int a=0; a < col.getChildCount(); a++){
@@ -238,13 +237,14 @@ public class ScheduleView extends Activity {
 	    			col.getChildAt(a).setBackgroundColor(Color.argb(255, 119, 119, 119));
 	    		}
 	    	}
-   
+	    	//set the background/border and id of the actual clicked view
 	    	view.setBackgroundColor(Color.WHITE);
 	    	view.setId(665);
 	    	addbutton.setText("Update");
 	    	refreshbutton.setText("Delete");
 	    	addbutton.setOnClickListener(new View.OnClickListener() {
 	    		@Override
+	    		/** launch the update activity with requisite information*/
 	    		public void onClick(View v){
 	    			Intent intent = new Intent(getBaseContext(), CreateScheduleView.class);
 	    			String[] value;
@@ -261,6 +261,7 @@ public class ScheduleView extends Activity {
 	    	});
 	    	refreshbutton.setOnClickListener(new View.OnClickListener() {
 	    		@Override
+	    		/**Set the functionality of the "delete button"*/
 	    		public void onClick(final View v){
 	    			new AlertDialog.Builder(v.getContext())
 					.setTitle("Delete Event")
@@ -283,10 +284,15 @@ public class ScheduleView extends Activity {
     	}
     };
     
+    /**Deselects events and resets the refresh/add buttons
+     * 
+     * @param v
+     */
     private void onBlankClick(View v){
     	Button addbutton = (Button) findViewById(R.id.addbutton);
     	Button refreshbutton = (Button) findViewById(R.id.refreshbutton);
     	LinearLayout rl = (LinearLayout) findViewById(R.id.linearLayout3);
+    	//Reset all schedule events
     	for (int i=0; i < rl.getChildCount(); i++){
     		RelativeLayout col = (RelativeLayout) rl.getChildAt(i);
     		for (int a=0; a < col.getChildCount(); a++){
@@ -294,6 +300,7 @@ public class ScheduleView extends Activity {
     			col.getChildAt(a).setBackgroundColor(Color.argb(255, 119, 119, 119));
     		}
     	}
+    	//reset button text
     	addbutton.setText("Add");
     	refreshbutton.setText("Refresh");
     	addbutton.setOnClickListener(new View.OnClickListener() {
@@ -313,6 +320,11 @@ public class ScheduleView extends Activity {
     }
     
     
+    /*Delete an event layout from the database and remove it from the screen
+     *
+     * @param relv to be deleted
+     *
+     */
     private void deleteView (RelativeLayout relv) {
     	final TextView starttime = (TextView) relv.getChildAt(1);
 		final TextView endtime = (TextView)relv.getChildAt(2);
@@ -367,9 +379,13 @@ public class ScheduleView extends Activity {
 		}).start();
     }
 		
-		
+	/**Populates the schedule with clickable events
+	 * 
+	 * @author nicholasmostowich
+	 *
+	 */
     private class PopulateScheduleTask extends AsyncTask<Void, Boolean, String> {
-
+    	private ProgressDialog dialog; //used for the "Loading..." message
 		@Override
 		protected String doInBackground(Void... params) {
 			publishProgress(true);
@@ -411,19 +427,14 @@ public class ScheduleView extends Activity {
 		}
 		protected void onProgressUpdate(Boolean bool) {
 	         if(bool) {
-	        	 ProgressDialog dialog = ProgressDialog.show(ScheduleView.this, "", 
+	        	 dialog = ProgressDialog.show(ScheduleView.this, "", 
 	                        "Loading Schedule. Please wait...", true);
 	        	 dialog.show();
 	        	 return;
 	         }else {
-	        	
+	        	dialog.dismiss();
 	         }
 	     }
-		/*@Override
-		protected void onProgressUpdate(Integer...values){
-			super.onProgressUpdate(values);
-			Utils.errormessage("Loading...", getBaseContext());
-		}*/
 		
 		@Override
 		protected void onPostExecute(String json) {
@@ -431,13 +442,6 @@ public class ScheduleView extends Activity {
 					JSONTokener tokener = new JSONTokener(json);
 					JSONArray jsonarray = new JSONArray(tokener);
 					if (jsonarray.length() == 0) {
-						/*Context context = getApplicationContext();
-						CharSequence errormessage = "There don't seem to be any scheduled events in our database.";
-						int duration = Toast.LENGTH_SHORT;
-						
-						//return that user messed up
-						Toast toastiness = Toast.makeText(context, errormessage, duration);
-						toastiness.show();*/
 						Utils.errormessage("There don't seem to be any scheduled events in our database.", getApplicationContext());
 					}
 					else{
@@ -487,7 +491,10 @@ public class ScheduleView extends Activity {
 					Log.i("CATCH HIT: ", e.getMessage());
 				}
 		}
-
+		/** Helper to remove leading and trailing characters from a time string, ie converts '09:00:00' to '9:00'
+		 * @param string to be cleaned
+		 * @return cleaned string
+		 */
 		private String cleanTimeString(String string) {
 			if (string.charAt(0) == '0')
 				string = string.substring(1, 5);
@@ -495,7 +502,16 @@ public class ScheduleView extends Activity {
 				string = string.substring(0,5);
 			return string;
 		}
-
+		
+		/** Adds an event to the screen 
+		 * 
+		 * @param startTime_s
+		 * @param endTime_s
+		 * @param columnId
+		 * @param referenceId
+		 * @param day
+		 * @throws ParseException
+		 */
 		private void addScheduleEvent(final String startTime_s, final String endTime_s,
 				int columnId, final String referenceId, final String day) throws ParseException {
 			ViewGroup col = (ViewGroup) findViewById(columnId);        
@@ -544,12 +560,14 @@ public class ScheduleView extends Activity {
 					
 				}
 			});
+			//set some constants for event
 			LinearLayout.LayoutParams lparams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, (int)height);
 			String[] layoutdata = new String[2];
 			layoutdata[0] = referenceId;
 			layoutdata[1] = day;
-			layout.setTag(layoutdata);
+			layout.setTag(layoutdata); //set data tag
 			col.addView(layout, lparams);
+			//h4x to fix margins
 			RelativeLayout.LayoutParams legitparams = (android.widget.RelativeLayout.LayoutParams) layout.getLayoutParams();
 			legitparams.topMargin = (int)topmargin;
 			legitparams.leftMargin = (int)(1*getResources().getDisplayMetrics().density + 0.5f);
