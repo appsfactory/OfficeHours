@@ -139,6 +139,7 @@
 	    	     android:textSize="20dp" 
 	    	     android:onClick="Cancel">	 		
 				</Button>
+				
 			<LinearLayout android:layout_alignParentRight="true"
 			    android:layout_height="@dimen/barheight"
 			    android:layout_width="60dp"
@@ -199,6 +200,20 @@
 			        android:clickable="true"
 			        android:hint="Friday"/>
 			   </LinearLayout>
+
+			<Button
+			    android:layout_width="wrap_content"
+			    android:layout_height="30dp"
+			    android:layout_alignParentBottom="true"
+			    android:layout_alignParentRight="true"
+			    android:background="@drawable/button_blue"
+			    android:onClick="Save"
+			    android:text="Save"
+			    android:textSize="20dp"
+			    android:layout_marginBottom="3dp"
+			    android:layout_marginRight="3dp"
+			    android:textColor="#FFFFFF" />
+
     </RelativeLayout>
     		
 </LinearLayout>

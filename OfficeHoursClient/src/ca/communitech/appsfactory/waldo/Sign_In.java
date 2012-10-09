@@ -1,6 +1,5 @@
 package ca.communitech.appsfactory.waldo;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
@@ -13,18 +12,13 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.os.Bundle;
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.util.Log;
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
-import android.view.ViewDebug.FlagToString;
-import android.widget.Toast;
 import android.widget.ToggleButton;
-import ca.communitech.appsfactory.waldo.R;
 
 public class Sign_In extends Activity {
 
@@ -40,7 +34,10 @@ public class Sign_In extends Activity {
         return true;
     }
     
-    /** Called when user presses the sign in/out button */
+    /** Called when user presses the sign in/out button
+     * 
+     * @param view
+     */
     public void toggleSignIn (View view) {
     	ToggleButton togglebutton = (ToggleButton) findViewById(R.id.toggleButton1);
     	if (togglebutton.isChecked()){
@@ -63,7 +60,11 @@ public class Sign_In extends Activity {
     	    }).start(); 
     	}
     }
-
+    
+    /** Communicates to the server, setting the user's signed in/out status
+     * 
+     * @param action either 'signIn' or 'signOut'
+     */
 	private void postSignInorOut(String action) {
 		//Create Http client and header
 		HttpClient client = new DefaultHttpClient();
@@ -99,6 +100,10 @@ public class Sign_In extends Activity {
 		startActivity(my_schedule_intent);
     }
     
+    /** signs the user out, resets the saved username/password, and pops to the log in screen
+     * 
+     * @param view
+     */
     public void logOut(View view) {
     	new Thread(new Runnable() {
 	        public void run() {

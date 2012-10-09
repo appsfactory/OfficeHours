@@ -9,7 +9,6 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONObject;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -28,11 +27,12 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import ca.communitech.appsfactory.waldo.R;
 
 public class CreateScheduleView extends Activity {
 
 	private int height;
-	private int width ;
+	private int width;
 	private int screenDensity;
 	private int DptoPixel;
 	private String startingTime;
@@ -44,14 +44,17 @@ public class CreateScheduleView extends Activity {
 	
 	 @Override
 	    public void onCreate(Bundle savedInstanceState) {
-	        super.onCreate(savedInstanceState);
+		 super.onCreate(savedInstanceState);
 	        setContentView(R.layout.activity_create_schedule_view);
 	       
-	        View topscroll = findViewById(R.id.topscroll);
+	       //set the interactable areas of the draggable time slider
+	       View topscroll = findViewById(R.id.topscroll);
 	       topscroll.setOnTouchListener(topTouch);
 	       View bottomscroll = findViewById(R.id.bottomscroll);
 	       bottomscroll.setOnTouchListener(bottomTouch);
 	       
+
+	       //initialize map of days to be added
 	       daySelected = new HashMap<String, String>(5);
 	       daySelected.put("Monday", "false");
 	       daySelected.put("Tuesday", "false");
@@ -59,6 +62,7 @@ public class CreateScheduleView extends Activity {
 	       daySelected.put("Thursday", "false");
 	       daySelected.put("Friday", "false");
 	       
+	       //grab the start/end times from the intent, and set them if they exist
 	       String[] intentextra = this.getIntent().getStringArrayExtra("ca.communitech.appsfactory.waldo.startEnd");
     	   LinearLayout daybuttons = (LinearLayout) findViewById(R.id.daybuttons);
 	       if (intentextra != null) {
@@ -72,6 +76,7 @@ public class CreateScheduleView extends Activity {
 	    		   if (String.valueOf(daybutton.getHint()).equals(startend[3])) {
 	    			   daybutton.setBackgroundColor(Color.argb(255, 0, 102, 200));
 	    			   Log.i("fired", "you heard me");
+
 	    		   }
 	    	   }
 	       }else{
@@ -85,7 +90,7 @@ public class CreateScheduleView extends Activity {
 	    	   startend[2] = "false";
 	    	   startend[3] = "false";
 	       }
-	       
+	       //used for calculating pixels from dp
 	       DisplayMetrics displaymetrics = new DisplayMetrics();
 	       getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
 	      
@@ -103,7 +108,7 @@ public class CreateScheduleView extends Activity {
 	       daySelected.put("Wednesday", "false");
 	       daySelected.put("Thursday", "false");
 	       daySelected.put("Friday", "false");
-	      
+	      //set font
 	       metro = Typeface.createFromAsset(getAssets(), "Segoe UI.ttf");
 	       TextView daytext = (TextView) findViewById(R.id.daybutton);
 	       daytext.setTypeface(metro, Typeface.NORMAL);
@@ -133,7 +138,10 @@ public class CreateScheduleView extends Activity {
 	        return true;
 	    }
 	
-	
+	/**
+	 * listens for a touch event at the top edge of the box and drags accordingly
+	 * 
+	 */
 	private OnTouchListener topTouch = new OnTouchListener() {
 		@Override
 		public boolean onTouch(View v, MotionEvent event){
@@ -154,7 +162,15 @@ public class CreateScheduleView extends Activity {
 			return true;
 		}
 	};
+//	@Override
+//    public void onStop() {
+////		super.onStop();
+////    	finish();
+//    }
 	
+	/**
+	 * Listens for a touch event at the bottom edge of the box and drags accordingly
+	 */
 	private OnTouchListener bottomTouch = new OnTouchListener() {
 		@Override
 		public boolean onTouch(View v, MotionEvent event) {
@@ -179,7 +195,10 @@ public class CreateScheduleView extends Activity {
 	
 	
    
-    
+    /**
+     * grab info from UI and pass to the ScheduleView activity that will populate the screen
+     * @param view
+     */
     public void Save(View view){
     	boolean dayChosen = false;
     	if (startend[3] != "false"){
@@ -201,6 +220,10 @@ public class CreateScheduleView extends Activity {
 	    	startActivity(intent);
 		}
     }
+    /**
+     * resets back to the ScheduleView activity
+     * @param v
+     */
     public void Cancel (View v){
     	Intent intent = new Intent(this, ScheduleView.class);
     	intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
@@ -323,30 +346,6 @@ public class CreateScheduleView extends Activity {
 	    		return null;
 	    	}
 		}
-	      
-
-		/*
-		@Override
-		protected void onPostExecute(HttpResponse response) {
-				try {
-					BufferedReader reader = new BufferedReader(new InputStreamReader(response.getEntity().getContent(), "UTF-8"));
-					String json = reader.readLine();
-					JSONTokener tokener = new JSONTokener(json);
-					JSONArray jsonarray = new JSONArray(tokener);
-				} catch (JSONException e) {
-					// TODO Auto-generated catch block
-					Log.i("CATCH HIT: ", e.getMessage());
-				} catch (UnsupportedEncodingException e) {
-					// TODO Auto-generated catch block
-					Log.i("CATCH HIT: ", e.getMessage());
-				} catch (IllegalStateException e) {
-					// TODO Auto-generated catch block
-					Log.i("CATCH HIT: ", e.getMessage());
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					Log.i("CATCH HIT: ", e.getMessage());
-				}
-		}*/
     }
 
     

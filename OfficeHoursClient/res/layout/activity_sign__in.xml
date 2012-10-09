@@ -13,7 +13,9 @@
         android:onClick="toggleSignIn"
         android:textOff="I&apos;m not at the Hub"
         android:textOn="I&apos;m at the Hub"
-        android:textSize="30sp" />
+        android:textSize="23sp"
+        android:textColor="#FFFFFF"
+        android:background="@drawable/button_blue" />
 
     <TextView
         android:id="@+id/textView1"
@@ -26,6 +28,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <Button
+
         android:id="@+id/button1"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
