@@ -1,18 +1,19 @@
 package ca.communitech.appsfactory.waldo;
 
-import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
+import android.os.Bundle;
 import android.view.Menu;
 
 public class SignInChecker extends Activity {
-
+	public static Typeface metro;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in_checker);
-        
+        metro = Typeface.createFromAsset(getAssets(), "HelveticaCY.dfont");
         //grab usernamesaltpassword from local storage and disseminate
         SharedPreferences auth_stuff = getSharedPreferences(Constants.SHARED_PREFS_FILE, MODE_PRIVATE);
         String unsplit_auth_string = auth_stuff.getString("authstring", " " + Constants.AUTH_SPLITTER + " ");

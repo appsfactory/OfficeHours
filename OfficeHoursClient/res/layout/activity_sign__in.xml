@@ -2,7 +2,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
-
+	
+    <ca.communitech.appsfactory.waldo.MarqueeViewSingle
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+   		 android:layout_marginTop="30dp"
+        android:id="@+id/marquee"/>
+	<!--  
+	<TextView
+    android:id="@+id/officehours"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="20dp"
+    android:layout_marginTop="30dp"
+    android:ellipsize="marquee"
+    android:scrollHorizontally="true"
+    android:singleLine="true"
+    android:text="Office Hours"
+    android:textColor="#222"
+    android:textSize="150dp" 
+    android:marqueeRepeatLimit="marquee_forever"/>
+-->
     <ToggleButton
         android:id="@+id/toggleButton1"
         android:layout_width="250dp"

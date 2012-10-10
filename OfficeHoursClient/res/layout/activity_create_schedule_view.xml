@@ -121,12 +121,16 @@
 	    	       android:layout_height="40dp"
 	    	       android:layout_width="match_parent"
 	    	       android:layout_alignParentTop="true"
+	    	       android:background="@drawable/arrow_up"
+	    	       android:alpha="0.25"
 	    	  />
 	    	   <View 
 	    	        android:id="@+id/bottomscroll"
 	    	       android:layout_height="40dp"
 	    	       android:layout_width="match_parent"
 	    	       android:layout_alignParentBottom="true"
+	    	       android:background="@drawable/arrow_down"
+	    	       android:alpha="0.25"
 	    	       />
 	    	 </RelativeLayout>
 

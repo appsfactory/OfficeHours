@@ -23,6 +23,7 @@ import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
+import android.view.animation.AnimationSet;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -147,10 +148,8 @@ public class CreateScheduleView extends Activity {
 			View bar = findViewById(R.id.bar);
 			View blue = findViewById(R.id.bluebox);
 			RelativeLayout relscreen = (RelativeLayout) findViewById(R.id.relscreen);
-			
-			int Y = (int) event.getY() + blue.getTop() - 15;
-			
-			if (Y < blue.getBottom() - dp(30) && Y > bar.getTop() + dp(5)){
+			int Y = (int) event.getY() + blue.getTop() - 35; //manually tune the y coordinate to sort of average between different points of contact
+			if (Y < blue.getBottom() - dp(25) && Y > bar.getTop() + dp(5)){
 				RelativeLayout.LayoutParams parms=new RelativeLayout.LayoutParams(blue.getWidth(),blue.getHeight());
 					parms.topMargin = Y;
 					parms.leftMargin = blue.getLeft();
@@ -161,7 +160,6 @@ public class CreateScheduleView extends Activity {
 			return true;
 		}
 	};
-
 	
 	/**
 	 * Listens for a touch event at the bottom edge of the box and drags accordingly
@@ -173,9 +171,9 @@ public class CreateScheduleView extends Activity {
 				View blue = (View) v.getParent();
 				RelativeLayout relscreen = (RelativeLayout) findViewById(R.id.relscreen);
 				
-				int Y = (int) event.getY() + blue.getBottom() - 45;
+				int Y = (int) event.getY() + blue.getBottom() - 25;
 
-				if (Y - blue.getTop() > dp(30) && Y < bar.getBottom() - dp(5)){
+				if (Y - blue.getTop() > dp(25) && Y < bar.getBottom() - dp(5)){
 					RelativeLayout.LayoutParams parms=new RelativeLayout.LayoutParams(blue.getWidth(),blue.getHeight());
 						parms.topMargin = blue.getTop();
 						parms.leftMargin = blue.getLeft();
@@ -248,9 +246,9 @@ public class CreateScheduleView extends Activity {
     	View bar = findViewById(R.id.bar);
     	View rhelper;
     	if (location == "top") {
-    		rhelper = findViewById(555);
+    		rhelper = findViewById(Constants.tophelper);
     	} else {
-    		rhelper = findViewById(556);
+    		rhelper = findViewById(Constants.bottomhelper);
     	}
     	view.removeView(rhelper);
 
@@ -281,9 +279,9 @@ public class CreateScheduleView extends Activity {
     	helper.setText(String.valueOf(H) + ":" + Mstring);
 		helper.setTextSize(bar.getWidth() / 6);
 		if (location == "top"){
-			helper.setId(555);
+			helper.setId(Constants.tophelper);
 		} else {
-			helper.setId(556);
+			helper.setId(Constants.bottomhelper);
 		}
 		helper.setTypeface(metro, Typeface.NORMAL);
 		RelativeLayout.LayoutParams parms = new RelativeLayout.LayoutParams(width, dp(70));
@@ -360,7 +358,7 @@ public class CreateScheduleView extends Activity {
     	View bar = findViewById(R.id.bar);
     	int H=Integer.parseInt(start.substring(0, 2));
     	int M=Integer.parseInt(start.substring(3,5));
-    	//calculate height of bar
+    	//calculate top position of bar
 		int top= (bar.getHeight()/40)*((M/15 + 1 + 4*(H-7)));
     	Log.i("H", String.valueOf(top));
 		//re-use H and M variables because why not

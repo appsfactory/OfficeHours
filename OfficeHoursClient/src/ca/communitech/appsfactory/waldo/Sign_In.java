@@ -18,6 +18,12 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.Animation.AnimationListener;
+import android.view.animation.AnimationSet;
+import android.view.animation.TranslateAnimation;
+import android.widget.HorizontalScrollView;
+import android.widget.TextView;
 import android.widget.ToggleButton;
 
 public class Sign_In extends Activity {
@@ -26,6 +32,50 @@ public class Sign_In extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign__in);
+        //final TextView text = (TextView) findViewById(R.id.officehours);
+        /*
+    	final AnimationSet animleft = new AnimationSet(true);
+	    	int fromX = text.getScrollX();
+	    	int fromY = text.getScrollY();
+	    	text.scrollTo(500, 100);
+	    	int toX=500;
+	    	TranslateAnimation transam = new TranslateAnimation(fromX, -toX, fromY, fromY);
+	    	transam.setDuration(3000);
+    	animleft.addAnimation(transam);
+    	
+    	final AnimationSet animright = new AnimationSet(true);
+    		int rfromX = fromX - 500;
+    		TranslateAnimation transamright = new TranslateAnimation(rfromX, fromX, fromY, fromY);
+    		transamright.setDuration(3000);
+    	animright.addAnimation(transamright);
+    	
+    	animleft.setAnimationListener(new AnimationListener() {
+    		@Override
+    		public void onAnimationEnd(Animation arg0) {
+    			text.clearAnimation();
+    			text.startAnimation(animright);
+    		}
+    		@Override public void onAnimationRepeat(Animation arg0) {}
+    	    @Override public void onAnimationStart(Animation arg0) {}
+    	});
+    	
+    	animright.setAnimationListener(new AnimationListener() {
+    		@Override
+    		public void onAnimationEnd(Animation arg0) {
+    			text.clearAnimation();
+    			text.startAnimation(animleft);
+    		}
+    		@Override public void onAnimationRepeat(Animation arg0) {}
+    	    @Override public void onAnimationStart(Animation arg0) {}
+    	});
+    	
+    	*/
+    	//text.startAnimation(animleft);
+    	//text.setSelected(true);
+        MarqueeViewSingle marquee = (MarqueeViewSingle) findViewById(R.id.marquee);
+        marquee.setText1("Office Hours");
+        marquee.startMarquee();
+    	
     }
 
     @Override

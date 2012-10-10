@@ -100,13 +100,13 @@ $numberUserLines = count($userResult);
 for ($i = 0; $i < $numberUserLines; $i++){
 	//find entries which are over a week old and still set to 'recurring'
 	$selectQuery = "SELECT * FROM userschedules
-					WHERE CURDATE() - date > 6 AND status = 'y' AND userName = '$userResult[$i]';";
+					WHERE cast('".date('Y-m-d', strtotime('monday this week'))."' as date) > date AND status = 'y' AND userName = '$userResult[$i]';";
 	$executeQuery = $db -> prepare($selectQuery);
 	$executeQuery->execute() or exit ("Error: SELECT Needed Updates Query Failed.");
 	$selectResult = $executeQuery->fetchAll(PDO::FETCH_BOTH);
 	$numberSelectLines = count($selectResult);
 	//Update the recurring status of all the old entries to not recur
-	$updateQuery = "UPDATE userschedules SET status = ' ' WHERE CURDATE() - date > 6 AND status = 'y' AND userName = '$userResult[$i]';";
+	$updateQuery = "UPDATE userschedules SET status = ' ' WHERE cast('".date('Y-m-d', strtotime('monday this week'))."' as date) > date AND status = 'y' AND userName = '$userResult[$i]';";
 	$executeQuery = $db->prepare($updateQuery);
 	$executeQuery ->execute() or exit("Error: UPDATE old recurring query failed.");
 	for ($i = 0; $i < $numberSelectLines; $i++){

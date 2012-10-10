@@ -11,4 +11,6 @@ public class Constants {
 	public static final String SHARED_PREFS_FILE = "USER_DATA";
 	public static enum DAYS { Monday, Tuesday, Wednesday, Thursday, Friday; }
 	public static final double MS_TO_DP = 40.0/3600000.0;
+	public static final int tophelper = 555;
+	public static final int bottomhelper = 556;
 }
