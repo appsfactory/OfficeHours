@@ -1,6 +1,6 @@
-OfficeHours
-===========
+# OfficeHours
 
+## Test server configuration
 A web-based application to control office hours, including a public bulletin board component.
 
 Set up vagrant in local repository folder (so Vagrantfile is located in the same folder as office hours folder)
@@ -9,3 +9,7 @@ then cd to repository path
 $ vagrant init boxname
 $ vagrant up
 Address of the index page should be http://localhost:4567/officehours/index.php
+
+## License
+
+This project is licensed under the MIT license. See LICENSE.md for details.
