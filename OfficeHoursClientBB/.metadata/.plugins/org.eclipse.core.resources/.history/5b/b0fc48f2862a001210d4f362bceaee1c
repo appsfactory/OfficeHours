@@ -1,0 +1,27 @@
+/*
+ * web.hpp
+ *
+ *  Created on: Nov 9, 2012
+ *      Author: adamwootton
+ */
+
+#ifndef web_HPP_
+#define web_HPP_
+
+#include <QObject>
+
+
+
+namespace bb { namespace cascades { class Application; }}
+class web : public QObject
+{
+	Q_OBJECT
+public:
+	web(bb::cascades::Application *app);
+	Q_INVOKABLE void initiateRequest();
+private slots:
+	void requestFinished (QNetworkReply* reply);
+private:
+	QNetworkAccessManager *mNetworkAccessManager;
+};
+#endif /* WEB_HPP_ */

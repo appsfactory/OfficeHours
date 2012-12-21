@@ -1,0 +1,3 @@
+com.rim.tad.tools.wst.jsdt.debug.core.suspend_on_all_script_loads=false
+com.rim.tad.tools.wst.jsdt.debug.core.suspend_on_thrown_exceptions=true
+eclipse.preferences.version=1

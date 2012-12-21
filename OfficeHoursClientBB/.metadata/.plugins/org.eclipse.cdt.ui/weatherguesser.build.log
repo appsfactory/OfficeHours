@@ -1,0 +1,30 @@
+
+**** Build of configuration Default for project weatherguesser ****
+
+make all 
+/Applications/bbndk/host_10_0_9_52/darwin/x86/usr/bin/qmake -spec unsupported/blackberry-armv7le-qcc -o arm/Makefile weatherguesser.pro CONFIG+=device
+/Applications/bbndk/host_10_0_9_52/darwin/x86/usr/bin/qmake -spec unsupported/blackberry-x86-qcc -o x86/Makefile weatherguesser.pro CONFIG+=simulator
+make -C ./arm -f Makefile all
+make[1]: Entering directory `/Users/adamwootton/Downloads/weatherguesser/arm'
+make -f Makefile.Release all
+make[2]: Entering directory `/Users/adamwootton/Downloads/weatherguesser/arm'
+make[2]: Nothing to be done for `all'.
+make[2]: Leaving directory `/Users/adamwootton/Downloads/weatherguesser/arm'
+make -f Makefile.Debug all
+make[2]: Entering directory `/Users/adamwootton/Downloads/weatherguesser/arm'
+make[2]: Nothing to be done for `all'.
+make[2]: Leaving directory `/Users/adamwootton/Downloads/weatherguesser/arm'
+make[1]: Leaving directory `/Users/adamwootton/Downloads/weatherguesser/arm'
+make -C ./x86 -f Makefile all
+make[1]: Entering directory `/Users/adamwootton/Downloads/weatherguesser/x86'
+make -f Makefile.Release all
+make[2]: Entering directory `/Users/adamwootton/Downloads/weatherguesser/x86'
+make[2]: Nothing to be done for `all'.
+make[2]: Leaving directory `/Users/adamwootton/Downloads/weatherguesser/x86'
+make -f Makefile.Debug all
+make[2]: Entering directory `/Users/adamwootton/Downloads/weatherguesser/x86'
+make[2]: Nothing to be done for `all'.
+make[2]: Leaving directory `/Users/adamwootton/Downloads/weatherguesser/x86'
+make[1]: Leaving directory `/Users/adamwootton/Downloads/weatherguesser/x86'
+
+**** Build Finished ****

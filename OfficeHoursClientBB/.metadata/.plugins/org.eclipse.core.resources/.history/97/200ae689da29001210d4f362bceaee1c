@@ -1,0 +1,105 @@
+// Default empty project template
+import bb.cascades 1.0
+
+// creates one page with a label
+
+Page {
+    Container {
+        layout: StackLayout {
+        }
+        Container {
+            id: content
+            layoutProperties: StackLayoutProperties {
+                spaceQuota: 3.0
+            }
+            layout: DockLayout {
+            }
+            
+            verticalAlignment: VerticalAlignment.Fill
+            horizontalAlignment: HorizontalAlignment.Fill
+            animations: [
+                RotateTransition {
+                    id: rotateAnimation
+                    toAngleZ: 30
+                    duration: 100
+                },
+                RotateTransition{
+                    id: rotateBack
+                    toAngleZ:0
+                    duration:100
+                }
+            ]
+            Container {
+                layout: AbsoluteLayout {
+                }
+                verticalAlignment: VerticalAlignment.Fill
+                horizontalAlignment: HorizontalAlignment.Fill
+                ImageView {
+	                imageSource: "asset:///night.jpg"
+	                scalingMethod: ScalingMethod.None
+	                maxWidth: 600.0
+	                maxHeight: 200.0
+	                topMargin: 400.0
+	                leftMargin: 200.0
+	                layoutProperties: AbsoluteLayoutProperties {
+	                    positionX: 400.0
+	                    positionY: 300.0
+	                }
+	            }
+            }
+            
+            Button {
+                id: statustoggle
+                verticalAlignment: VerticalAlignment.Center
+                horizontalAlignment: HorizontalAlignment.Center
+                preferredWidth: 400.0
+                preferredHeight: 700.0
+                minWidth: 400.0
+                minHeight: 700.0
+                text: "Here"
+                layoutProperties: StackLayoutProperties {
+                    spaceQuota: 1.0
+                }
+                onClicked: {
+                    if(statustoggle.text == "Here") {
+                        statustoggle.text="Not Here"
+                        rotationZ: 30.0
+                        rotateAnimation.play();
+                    }else{  
+                        statustoggle.text="Here"
+                        rotateBack.play();
+                    }
+                }
+            }
+        }
+        Container {
+            id: footer
+            verticalAlignment: VerticalAlignment.Bottom
+            layout: StackLayout {
+                orientation: LayoutOrientation.LeftToRight
+            }
+            layoutProperties: StackLayoutProperties {
+                spaceQuota: 1.0
+            }
+            leftPadding: 20.0
+            rightPadding: 20.0
+            bottomPadding: 20.0
+            Button {
+                id:myschedule
+                onClicked: {
+                }
+                text: "My Schedule"
+                verticalAlignment: VerticalAlignment.Bottom
+                horizontalAlignment: HorizontalAlignment.Center
+            }
+            Button {
+                id:logout
+                onClicked: {
+                }
+                text: "Log Out"
+                verticalAlignment: VerticalAlignment.Bottom
+                horizontalAlignment: HorizontalAlignment.Center
+            }
+        }
+    }
+}

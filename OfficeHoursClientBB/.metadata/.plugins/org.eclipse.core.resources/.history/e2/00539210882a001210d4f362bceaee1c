@@ -1,0 +1,41 @@
+/*
+ * web.cpp
+ *
+ *  Created on: Nov 9, 2012
+ *      Author: adamwootton
+ */
+#include "web.hpp"
+#include <QObject>
+#include <QIODevice>
+#include <QDebug>
+#include <bb/cascades/Application>
+#include <bb/cascades/QmlDocument>
+#include <bb/cascades/AbstractPane>
+
+using namespace bb::cascades;
+
+web::web(bb::cascades::Application *app)
+: QObject(app)
+{
+	QmlDocument *qml =QmlDocument::create("login.qml");
+	qml->setContextProperty("web", this);
+	mNetworkAccessManager = new QNetworkAccessManager(this);
+	bool result = connect(mNetworkAccessManager,
+			SIGNAL(finished(QNetworkReply*)),
+			this, SLOT(requestFinished(QNetworkReply*)));
+	Q_ASSERT(result);
+	Q_UNUSED(result);
+
+}
+void web::initiateRequest() {
+	QNetworkRequest request = QNetworkRequest();
+	request.setUrl(QUrl("http://10.168.294.114"));
+	mNetworkAccessManager->get(request);
+}
+void web::requestFinished(QNetworkReply* reply) {
+	if (reply->error() == QNetworkReply::NoError){
+		qDebug() <<  QString("\n Successful connection");
+	} else {
+		qDebug() << QString("\n Problem with the network");
+	}
+}

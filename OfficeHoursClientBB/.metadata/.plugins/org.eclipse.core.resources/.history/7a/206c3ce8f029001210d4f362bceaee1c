@@ -1,0 +1,40 @@
+import bb.cascades 1.0
+Page{
+    Container{
+        layout: StackLayout {
+            orientation: LayoutOrientation.TopToBottom
+        }
+        topPadding: 200.0
+        verticalAlignment: VerticalAlignment.Center
+        horizontalAlignment: HorizontalAlignment.Center
+        layoutProperties: StackLayoutProperties {
+        }
+        leftPadding: 100.0
+        rightPadding: 100.0
+        Label {
+            text: "Office"
+            textStyle.fontSizeValue: 40.0
+            textStyle.textAlign: TextAlign.Center
+            textStyle.color: Color.Black
+            multiline: false
+        }
+        Label {
+            text: "Hours"
+            textStyle.fontSizeValue: 40.0
+            textStyle.textAlign: TextAlign.Center
+            textStyle.color: Color.Black
+            multiline: false
+        }
+        TextArea {
+            id:login
+        }
+        TextArea {
+            id:password
+        }
+        Button {
+            verticalAlignment: VerticalAlignment.Center
+            horizontalAlignment: HorizontalAlignment.Center
+            text: "Log In"
+        }
+    }
+}

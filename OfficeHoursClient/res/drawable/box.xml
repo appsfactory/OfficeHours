@@ -4,8 +4,8 @@
     android:id="@+id/box">
     <size android:width = "5dp"
         android:height="10dp"/>
-    <solid android:color = "@android:color/transparent"
-        android:alpha="0.5"/>
+    <solid android:color = "#00000000"
+        />
     <stroke android:width="5dp"
         	android:color="#FFFFFF"/>
 

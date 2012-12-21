@@ -1,0 +1,49 @@
+
+**** Build of configuration Default for project OfficeHours ****
+
+make Device-Debug 
+/Applications/bbndk/host_10_0_9_52/darwin/x86/usr/bin/qmake -spec unsupported/blackberry-armv7le-qcc -o arm/Makefile OfficeHours.pro CONFIG+=device
+WARNING: Failure to find: ../src/*.h
+WARNING: Failure to find: ../src/*.h
+/Applications/bbndk/host_10_0_9_52/darwin/x86/usr/bin/qmake -spec unsupported/blackberry-x86-qcc -o x86/Makefile OfficeHours.pro CONFIG+=simulator
+WARNING: Failure to find: ../src/*.h
+WARNING: Failure to find: ../src/*.h
+make -C ./translations -f Makefile update release
+make[1]: Entering directory `/Users/adamwootton/Factory/OfficeHours/OfficeHoursClientBB/OfficeHours/translations'
+/Applications/bbndk/host_10_0_9_52/darwin/x86/usr/bin/lupdate OfficeHours.pro
+Updating 'OfficeHours_en_GB.ts'...
+    Found 0 source text(s) (0 new and 0 already existing)
+Updating 'OfficeHours_fr.ts'...
+    Found 0 source text(s) (0 new and 0 already existing)
+Updating 'OfficeHours_it.ts'...
+    Found 0 source text(s) (0 new and 0 already existing)
+Updating 'OfficeHours_de.ts'...
+    Found 0 source text(s) (0 new and 0 already existing)
+Updating 'OfficeHours_es.ts'...
+    Found 0 source text(s) (0 new and 0 already existing)
+Updating 'OfficeHours.ts'...
+    Found 0 source text(s) (0 new and 0 already existing)
+/Applications/bbndk/host_10_0_9_52/darwin/x86/usr/bin/lrelease OfficeHours.pro
+Updating '/Users/adamwootton/Factory/OfficeHours/OfficeHoursClientBB/OfficeHours/translations/OfficeHours_en_GB.qm'...
+    Generated 0 translation(s) (0 finished and 0 unfinished)
+Updating '/Users/adamwootton/Factory/OfficeHours/OfficeHoursClientBB/OfficeHours/translations/OfficeHours_fr.qm'...
+    Generated 0 translation(s) (0 finished and 0 unfinished)
+Updating '/Users/adamwootton/Factory/OfficeHours/OfficeHoursClientBB/OfficeHours/translations/OfficeHours_it.qm'...
+    Generated 0 translation(s) (0 finished and 0 unfinished)
+Could not find qmake configuration directoryCould not read qmake configuration file /Applications/bbndk/target_10_0_9_386/qnx6/usr/share/qt4/mkspecs/qmake.confUsing OS scope before setting MAKEFILE_GENERATOR/Applications/bbndk/target_10_0_9_386/qnx6/usr/share/qt4/mkspecs/features/debug_and_release.prf(1): Using OS scope before setting MAKEFILE_GENERATOR/Applications/bbndk/target_10_0_9_386/qnx6/usr/share/qt4/mkspecs/features/qt.prf(4): Using OS scope before setting MAKEFILE_GENERATOR/Applications/bbndk/target_10_0_9_386/qnx6/usr/share/qt4/mkspecs/features/qt.prf(36): Using OS scope before setting MAKEFILE_GENERATOR/Applications/bbndk/target_10_0_9_386/qnx6/usr/share/qt4/mkspecs/features/qt.prf(197): 'qtAddLibrary' is not a recognized test function/Applications/bbndk/target_10_0_9_386/qnx6/usr/share/qt4/mkspecs/features/qt.prf(197): 'qtAddLibrary' is not a recognized test function/Applications/bbndk/target_10_0_9_386/qnx6/usr/share/qt4/mkspecs/features/qt.prf(197): 'qtAddLibrary' is not a recognized test function/Applications/bbndk/target_10_0_9_386/qnx6/usr/share/qt4/mkspecs/features/qt.prf(197): 'qtAddLibrary' is not a recognized test function/Applications/bbndk/target_10_0_9_386/qnx6/usr/share/qt4/mkspecs/features/qt.prf(197): 'qtAddLibrary' is not a recognized test function/Applications/bbndk/target_10_0_9_386/qnx6/usr/share/qt4/mkspecs/features/qt.prf(197): 'qtAddLibrary' is not a recognized test function/Applications/bbndk/target_10_0_9_386/qnx6/usr/share/qt4/mkspecs/features/qt.prf(197): 'qtAddLibrary' is not a recognized test function/Applications/bbndk/target_10_0_9_386/qnx6/usr/share/qt4/mkspecs/features/qt.prf(213): Using OS scope before setting MAKEFILE_GENERATOR/Applications/bbndk/target_10_0_9_386/qnx6/usr/share/qt4/mkspecs/features/moc.prf(3): 'qtPrepareTool' is not a recognized test function/Applications/bbndk/target_10_0_9_386/qnx6/usr/share/qt4/mkspecs/features/moc.prf(12): Using OS scope before setting MAKEFILE_GENERATOR/Applications/bbndk/target_10_0_9_386/qnx6/usr/share/qt4/mkspecs/features/moc.prf(97): Using OS scope before setting MAKEFILE_GENERATOR/Applications/bbndk/target_10_0_9_386/qnx6/usr/share/qt4/mkspecs/features/uic.prf(108): Using OS scope before setting MAKEFILE_GENERATORCould not find qmake configuration directoryCould not read qmake configuration file /Applications/bbndk/target_10_0_9_386/qnx6/usr/share/qt4/mkspecs/qmake.confUsing OS scope before setting MAKEFILE_GENERATOR/Applications/bbndk/target_10_0_9_386/qnx6/usr/share/qt4/mkspecs/features/debug_and_release.prf(1): Using OS scope before setting MAKEFILE_GENERATOR/Applications/bbndk/target_10_0_9_386/qnx6/usr/share/qt4/mkspecs/features/qt.prf(4): Using OS scope before setting MAKEFILE_GENERATOR/Applications/bbndk/target_10_0_9_386/qnx6/usr/share/qt4/mkspecs/features/qt.prf(36): Using OS scope before setting MAKEFILE_GENERATOR/Applications/bbndk/target_10_0_9_386/qnx6/usr/share/qt4/mkspecs/features/qt.prf(197): 'qtAddLibrary' is not a recognized test function/Applications/bbndk/target_10_0_9_386/qnx6/usr/share/qt4/mkspecs/features/qt.prf(197): 'qtAddLibrary' is not a recognized test function/Applications/bbndk/target_10_0_9_386/qnx6/usr/share/qt4/mkspecs/features/qt.prf(197): 'qtAddLibrary' is not a recognized test function/Applications/bbndk/target_10_0_9_386/qnx6/usr/share/qt4/mkspecs/features/qt.prf(197): 'qtAddLibrary' is not a recognized test function/Applications/bbndk/target_10_0_9_386/qnx6/usr/share/qt4/mkspecs/features/qt.prf(197): 'qtAddLibrary' is not a recognized test function/Applications/bbndk/target_10_0_9_386/qnx6/usr/share/qt4/mkspecs/features/qt.prf(197): 'qtAddLibrary' is not a recognized test function/Applications/bbndk/target_10_0_9_386/qnx6/usr/share/qt4/mkspecs/features/qt.prf(197): 'qtAddLibrary' is not a recognized test function/Applications/bbndk/target_10_0_9_386/qnx6/usr/share/qt4/mkspecs/features/qt.prf(213): Using OS scope before setting MAKEFILE_GENERATOR/Applications/bbndk/target_10_0_9_386/qnx6/usr/share/qt4/mkspecs/features/moc.prf(3): 'qtPrepareTool' is not a recognized test function/Applications/bbndk/target_10_0_9_386/qnx6/usr/share/qt4/mkspecs/features/moc.prf(12): Using OS scope before setting MAKEFILE_GENERATOR/Applications/bbndk/target_10_0_9_386/qnx6/usr/share/qt4/mkspecs/features/moc.prf(97): Using OS scope before setting MAKEFILE_GENERATOR/Applications/bbndk/target_10_0_9_386/qnx6/usr/share/qt4/mkspecs/features/uic.prf(108): Using OS scope before setting MAKEFILE_GENERATOR
+Updating '/Users/adamwootton/Factory/OfficeHours/OfficeHoursClientBB/OfficeHours/translations/OfficeHours_de.qm'...
+    Generated 0 translation(s) (0 finished and 0 unfinished)
+Updating '/Users/adamwootton/Factory/OfficeHours/OfficeHoursClientBB/OfficeHours/translations/OfficeHours_es.qm'...
+    Generated 0 translation(s) (0 finished and 0 unfinished)
+Updating '/Users/adamwootton/Factory/OfficeHours/OfficeHoursClientBB/OfficeHours/translations/OfficeHours.qm'...
+    Generated 0 translation(s) (0 finished and 0 unfinished)
+make[1]: Leaving directory `/Users/adamwootton/Factory/OfficeHours/OfficeHoursClientBB/OfficeHours/translations'
+make -C ./arm -f Makefile debug
+make[1]: Entering directory `/Users/adamwootton/Factory/OfficeHours/OfficeHoursClientBB/OfficeHours/arm'
+make -f Makefile.Debug
+make[2]: Entering directory `/Users/adamwootton/Factory/OfficeHours/OfficeHoursClientBB/OfficeHours/arm'
+make[2]: Nothing to be done for `first'.
+make[2]: Leaving directory `/Users/adamwootton/Factory/OfficeHours/OfficeHoursClientBB/OfficeHours/arm'
+make[1]: Leaving directory `/Users/adamwootton/Factory/OfficeHours/OfficeHoursClientBB/OfficeHours/arm'
+
+**** Build Finished ****

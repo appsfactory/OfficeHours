@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="com.qnx.tools.ide.bbt.internal.ui.wizards.BBTProjectNewWizard">
+		<item value="true" key="generate-files"/>
+		<item value="org.eclipse.cdt.build.core.buildArtefactType.exe" key="artifact-type"/>
+	</section>
+</section>

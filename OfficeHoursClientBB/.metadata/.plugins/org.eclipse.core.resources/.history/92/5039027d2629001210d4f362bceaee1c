@@ -1,0 +1,89 @@
+// Default empty project template
+import bb.cascades 1.0
+
+// creates one page with a label
+NavigationPane {
+    id: navigationPane
+ 
+    // The first page, which appears at startup  
+    Page {
+        id: page1
+        ControlDelegate {
+            id: controlDelegate1
+            source: "asset:///login.qml"
+            delegateActive: true       
+        }
+        // Once the first page is created, the second
+        // and third pages are loaded asynchronously so that the
+        // content is ready to be loaded right away.
+        onCreationCompleted: {
+            controlDelegate2.delegateActive = true            
+            controlDelegate3.delegateActive = true            
+        }
+        actions: [
+            // Action that pushes page 2 onto the stack
+            ActionItem {
+                ActionBar.placement: ActionBarPlacement.OnBar
+                title: "My Schedule"
+                onTriggered: {
+                    navigationPane.push(page2);
+                }
+            }
+        ]
+        // A Back button that pops the pane off the stack
+        paneProperties: NavigationPaneProperties {
+            backButton: ActionItem {
+                title: "Back"
+                onTriggered: {
+                    navigationPane.pop();
+                }
+            }
+        }
+    }   
+    attachedObjects: [
+        // The second page
+        Page {
+            id: page2
+            ControlDelegate {
+                id: controlDelegate2
+                source: "page2.qml"
+            }
+            actions: [
+                // Action that pushes page 3 onto the stack
+                ActionItem {
+                    ActionBar.placement: ActionBarPlacement.OnBar
+                    title: "Page 3"                 
+                    onTriggered: {
+                        navigationPane.push(page3);
+                    }
+                }
+            ]
+            // A Back button that pops the pane off the stack
+            paneProperties: NavigationPaneProperties {
+                backButton: ActionItem {
+                    title: "Back"
+                    onTriggered: {
+                        navigationPane.pop();
+                    }
+                }
+            }
+        },
+        // The third page
+        Page {
+            id: page3
+            ControlDelegate {
+                id: controlDelegate3
+                source: "page3.qml"
+            }
+            // A Back button that pops the pane off the stack
+            paneProperties: NavigationPaneProperties {
+                backButton: ActionItem {
+                    title: "Back"
+                    onTriggered: {
+                        navigationPane.pop();
+                    }
+                }
+            }
+        }
+    ]      
+}

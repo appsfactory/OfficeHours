@@ -1,0 +1,4 @@
+DEVELOPER_CERTIFICATE_PATH=/Users/adamwootton/Library/Research In Motion/author.p12
+VERIFY_DEBUG_TOKEN_DURING_APP_INSTALL=true
+debugToken_0=/Users/adamwootton/Library/Research In Motion/debugtoken1.bar
+eclipse.preferences.version=1

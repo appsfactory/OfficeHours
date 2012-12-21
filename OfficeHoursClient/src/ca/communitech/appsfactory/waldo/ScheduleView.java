@@ -55,7 +55,7 @@ public class ScheduleView extends Activity {
         LinearLayout lin = (LinearLayout) findViewById(R.id.linearLayout3);
         for (int i = 0; i < lin.getChildCount(); i++){
         	lin.getChildAt(i).setOnClickListener(new View.OnClickListener() {
-				@Override
+				//@Override
 				public void onClick(View v){
 					onBlankClick(v);
 				}
@@ -152,7 +152,7 @@ public class ScheduleView extends Activity {
 	/**Toasts a generic database error message */
 	private void databaseConnectionErrorMessage() {
 		new Thread(new Runnable() {
-			@Override
+			//@Override
 			public void run() {
 				Utils.errormessage("Error connecting to database. Please try again in a few moments", getBaseContext());
 			}
@@ -252,7 +252,7 @@ public class ScheduleView extends Activity {
 	    	addbutton.setText("Update");
 	    	refreshbutton.setText("Delete");
 	    	addbutton.setOnClickListener(new View.OnClickListener() {
-	    		@Override
+	    		//@Override
 	    		/** launch the update activity with requisite information*/
 	    		public void onClick(View v){
 	    			Intent intent = new Intent(getBaseContext(), CreateScheduleView.class);
@@ -269,7 +269,7 @@ public class ScheduleView extends Activity {
 	    		
 	    	});
 	    	refreshbutton.setOnClickListener(new View.OnClickListener() {
-	    		@Override
+	    		//@Override
 	    		/**Set the functionality of the "delete button"*/
 	    		public void onClick(final View v){
 	    			new AlertDialog.Builder(v.getContext())
@@ -277,7 +277,7 @@ public class ScheduleView extends Activity {
 					.setMessage("Do you really want to delete this event?")
 					.setPositiveButton("You Bet!", new DialogInterface.OnClickListener() {
 						
-						@Override
+					//	@Override
 						public void onClick(DialogInterface dialog, int which) {
 	    	    			RelativeLayout relv = (RelativeLayout) view;
 	    	    			deleteView(relv);
@@ -313,7 +313,7 @@ public class ScheduleView extends Activity {
     	addbutton.setText("Add");
     	refreshbutton.setText("Refresh");
     	addbutton.setOnClickListener(new View.OnClickListener() {
-    		@Override
+    		//@Override
     		public void onClick(View v){
     			Intent intent = new Intent(getBaseContext(), CreateScheduleView.class);
     			startActivity(intent);
@@ -321,7 +321,7 @@ public class ScheduleView extends Activity {
     		
     	});
     	refreshbutton.setOnClickListener(new View.OnClickListener() {
-    		@Override
+    	//	@Override
     		public void onClick(View v){
     			refreshSchedule(v);
     		}
@@ -363,7 +363,7 @@ public class ScheduleView extends Activity {
 		}
 	    new Thread(new Runnable() {
 			
-			@Override
+			//@Override
 			public void run() {
 				HttpClient client = new DefaultHttpClient();
 				HttpPost post = new HttpPost (Constants.POST_URL);        	
@@ -580,7 +580,7 @@ public class ScheduleView extends Activity {
 			layout.setClickable(true);
 			layout.setOnClickListener (new View.OnClickListener() {
 				
-				@Override
+				//@Override
 				public void onClick(final View v) {
 					onColumnClick(v, startTime_s, endTime_s);
 					

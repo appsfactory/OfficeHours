@@ -143,7 +143,7 @@ public class CreateScheduleView extends Activity {
 	 * 
 	 */
 	private OnTouchListener topTouch = new OnTouchListener() {
-		@Override
+		//@Override
 		public boolean onTouch(View v, MotionEvent event){
 			View bar = findViewById(R.id.bar);
 			View blue = findViewById(R.id.bluebox);
@@ -165,7 +165,7 @@ public class CreateScheduleView extends Activity {
 	 * Listens for a touch event at the bottom edge of the box and drags accordingly
 	 */
 	private OnTouchListener bottomTouch = new OnTouchListener() {
-		@Override
+		//@Override
 		public boolean onTouch(View v, MotionEvent event) {
 				View bar = findViewById(R.id.bar);
 				View blue = (View) v.getParent();
@@ -303,7 +303,7 @@ public class CreateScheduleView extends Activity {
     
     private void databaseConnectionErrorMessage() {
     	new Thread(new Runnable() {
-			@Override
+			//@Override
 			public void run() {
 				Utils.errormessage("Error connecting to database. Please try again in a few moments", getBaseContext());
 			}
